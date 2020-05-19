@@ -18,6 +18,9 @@ private slots:
     void addToPurchases();
     void goToPurchases();
     void refreshPurchases();
+    void contentClicked(const QModelIndex &index);
+    void editPurchases();
+    void deletePurchases();
 
     void accountSettings();
 

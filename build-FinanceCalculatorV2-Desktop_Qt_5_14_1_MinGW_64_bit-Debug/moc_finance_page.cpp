@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_finance_page_t {
-    QByteArrayData data[8];
-    char stringdata0[106];
+    QByteArrayData data[13];
+    char stringdata0[169];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,13 +38,20 @@ QT_MOC_LITERAL(2, 29, 0), // ""
 QT_MOC_LITERAL(3, 30, 14), // "addToPurchases"
 QT_MOC_LITERAL(4, 45, 13), // "goToPurchases"
 QT_MOC_LITERAL(5, 59, 16), // "refreshPurchases"
-QT_MOC_LITERAL(6, 76, 15), // "accountSettings"
-QT_MOC_LITERAL(7, 92, 13) // "goToPaychecks"
+QT_MOC_LITERAL(6, 76, 14), // "contentClicked"
+QT_MOC_LITERAL(7, 91, 11), // "QModelIndex"
+QT_MOC_LITERAL(8, 103, 5), // "index"
+QT_MOC_LITERAL(9, 109, 13), // "editPurchases"
+QT_MOC_LITERAL(10, 123, 15), // "deletePurchases"
+QT_MOC_LITERAL(11, 139, 15), // "accountSettings"
+QT_MOC_LITERAL(12, 155, 13) // "goToPaychecks"
 
     },
     "finance_page\0searchPurchases\0\0"
     "addToPurchases\0goToPurchases\0"
-    "refreshPurchases\0accountSettings\0"
+    "refreshPurchases\0contentClicked\0"
+    "QModelIndex\0index\0editPurchases\0"
+    "deletePurchases\0accountSettings\0"
     "goToPaychecks"
 };
 #undef QT_MOC_LITERAL
@@ -55,7 +62,7 @@ static const uint qt_meta_data_finance_page[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -63,16 +70,22 @@ static const uint qt_meta_data_finance_page[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   44,    2, 0x08 /* Private */,
-       3,    0,   45,    2, 0x08 /* Private */,
-       4,    0,   46,    2, 0x08 /* Private */,
-       5,    0,   47,    2, 0x08 /* Private */,
-       6,    0,   48,    2, 0x08 /* Private */,
-       7,    0,   49,    2, 0x08 /* Private */,
+       1,    0,   59,    2, 0x08 /* Private */,
+       3,    0,   60,    2, 0x08 /* Private */,
+       4,    0,   61,    2, 0x08 /* Private */,
+       5,    0,   62,    2, 0x08 /* Private */,
+       6,    1,   63,    2, 0x08 /* Private */,
+       9,    0,   66,    2, 0x08 /* Private */,
+      10,    0,   67,    2, 0x08 /* Private */,
+      11,    0,   68,    2, 0x08 /* Private */,
+      12,    0,   69,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 7,    8,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -91,12 +104,14 @@ void finance_page::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 1: _t->addToPurchases(); break;
         case 2: _t->goToPurchases(); break;
         case 3: _t->refreshPurchases(); break;
-        case 4: _t->accountSettings(); break;
-        case 5: _t->goToPaychecks(); break;
+        case 4: _t->contentClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 5: _t->editPurchases(); break;
+        case 6: _t->deletePurchases(); break;
+        case 7: _t->accountSettings(); break;
+        case 8: _t->goToPaychecks(); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject finance_page::staticMetaObject = { {
@@ -128,13 +143,13 @@ int finance_page::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 9)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 6;
+        _id -= 9;
     }
     return _id;
 }

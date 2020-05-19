@@ -22,7 +22,7 @@
      <rect>
       <x>140</x>
       <y>50</y>
-      <width>821</width>
+      <width>1001</width>
       <height>521</height>
      </rect>
     </property>
@@ -191,6 +191,32 @@
       </property>
       <property name="placeholderText">
        <string>Enter note here...</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="editButton">
+      <property name="geometry">
+       <rect>
+        <x>75</x>
+        <y>320</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Edit</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="deleteButton">
+      <property name="geometry">
+       <rect>
+        <x>75</x>
+        <y>350</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Delete</string>
       </property>
      </widget>
     </widget>
@@ -362,6 +388,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>editButton</sender>
+   <signal>clicked()</signal>
+   <receiver>finance_page</receiver>
+   <slot>editPurchases()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>260</x>
+     <y>402</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>79</x>
+     <y>398</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteButton</sender>
+   <signal>clicked()</signal>
+   <receiver>finance_page</receiver>
+   <slot>deletePurchases()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>271</x>
+     <y>430</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>67</x>
+     <y>448</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>financeTable</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>finance_page</receiver>
+   <slot>contentClicked(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>647</x>
+     <y>239</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>606</x>
+     <y>40</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>searchPurchases()</slot>
@@ -370,5 +444,8 @@
   <slot>goToPaychecks()</slot>
   <slot>goToPurchases()</slot>
   <slot>addToPurchases()</slot>
+  <slot>editPurchases()</slot>
+  <slot>deletePurchases()</slot>
+  <slot>contentClicked(QModelIndex)</slot>
  </slots>
 </ui>

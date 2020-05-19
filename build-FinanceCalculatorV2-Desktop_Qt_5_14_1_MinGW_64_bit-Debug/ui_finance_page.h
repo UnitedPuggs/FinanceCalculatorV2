@@ -44,6 +44,8 @@ public:
     QLabel *noteLabel;
     QPushButton *submitButton;
     QTextEdit *noteLine;
+    QPushButton *editButton;
+    QPushButton *deleteButton;
     QWidget *paycheckPage;
     QPushButton *purchasesPageButton;
     QPushButton *paychecksPageButton;
@@ -61,7 +63,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName(QString::fromUtf8("stackedWidget"));
-        stackedWidget->setGeometry(QRect(140, 50, 821, 521));
+        stackedWidget->setGeometry(QRect(140, 50, 1001, 521));
         financePage = new QWidget();
         financePage->setObjectName(QString::fromUtf8("financePage"));
         financeTable = new QTableView(financePage);
@@ -109,6 +111,12 @@ public:
         sizePolicy.setHeightForWidth(noteLine->sizePolicy().hasHeightForWidth());
         noteLine->setSizePolicy(sizePolicy);
         noteLine->setFrameShadow(QFrame::Sunken);
+        editButton = new QPushButton(financePage);
+        editButton->setObjectName(QString::fromUtf8("editButton"));
+        editButton->setGeometry(QRect(75, 320, 80, 21));
+        deleteButton = new QPushButton(financePage);
+        deleteButton->setObjectName(QString::fromUtf8("deleteButton"));
+        deleteButton->setGeometry(QRect(75, 350, 80, 21));
         stackedWidget->addWidget(financePage);
         paycheckPage = new QWidget();
         paycheckPage->setObjectName(QString::fromUtf8("paycheckPage"));
@@ -139,6 +147,9 @@ public:
         QObject::connect(paychecksPageButton, SIGNAL(clicked()), finance_page, SLOT(goToPaychecks()));
         QObject::connect(purchasesPageButton, SIGNAL(clicked()), finance_page, SLOT(goToPurchases()));
         QObject::connect(submitButton, SIGNAL(clicked()), finance_page, SLOT(addToPurchases()));
+        QObject::connect(editButton, SIGNAL(clicked()), finance_page, SLOT(editPurchases()));
+        QObject::connect(deleteButton, SIGNAL(clicked()), finance_page, SLOT(deletePurchases()));
+        QObject::connect(financeTable, SIGNAL(clicked(QModelIndex)), finance_page, SLOT(contentClicked(QModelIndex)));
 
         QMetaObject::connectSlotsByName(finance_page);
     } // setupUi
@@ -155,6 +166,8 @@ public:
         noteLabel->setText(QCoreApplication::translate("finance_page", "Notes", nullptr));
         submitButton->setText(QCoreApplication::translate("finance_page", "Submit", nullptr));
         noteLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter note here...", nullptr));
+        editButton->setText(QCoreApplication::translate("finance_page", "Edit", nullptr));
+        deleteButton->setText(QCoreApplication::translate("finance_page", "Delete", nullptr));
         purchasesPageButton->setText(QCoreApplication::translate("finance_page", "Purchases", nullptr));
         paychecksPageButton->setText(QCoreApplication::translate("finance_page", "Paychecks", nullptr));
         pushButton->setText(QCoreApplication::translate("finance_page", "Account Settings", nullptr));

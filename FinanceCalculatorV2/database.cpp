@@ -15,7 +15,8 @@ void database::createDatabase() {
                "Date  VARCHAR(10),"
                "Item  VARCHAR(100),"
                "Spent INTEGER NOT NULL,"
-               "Note  TEXT);");
+               "Note  TEXT,"
+               "UNIQUE(Date, Item));");
 
     query.exec("CREATE TABLE Paychecks("
                "Date   VARCHAR(10),"

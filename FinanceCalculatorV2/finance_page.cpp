@@ -55,7 +55,7 @@ void finance_page::addToPurchases() {
     else if (spent == "")
         QMessageBox::warning(this, "", "Please enter an amount!");
     else {
-        query.prepare("INSERT INTO Purchases(Date, Item, Spent, Note) "
+        query.prepare("INSERT OR IGNORE INTO Purchases(Date, Item, Spent, Note) "
                       "VALUES(:date, :item, :spent, :note);");
 
         query.bindValue(":date", date);
@@ -84,7 +84,7 @@ void finance_page::refreshPurchases() {
     QSqlRecord record;
     QSqlQueryModel *model = new QSqlQueryModel();
 
-    query.prepare("SELECT * FROM Purchases");
+    query.prepare("SELECT * FROM Purchases ORDER BY Date ASC");
 
     if(!query.exec())
         qDebug() << query.lastError();
@@ -99,6 +99,62 @@ void finance_page::refreshPurchases() {
     for(int i = 0; i < model->rowCount(); ++i)
         ui->financeTable->resizeRowToContents(i);
 
+}
+
+
+void finance_page::contentClicked(const QModelIndex &index) {
+    QSqlQuery query;
+    QString val = ui->financeTable->model()->data(index).toString();
+
+    query.prepare("SELECT * FROM Purchases WHERE Item = '" + val + "';");
+
+    if(!query.exec())
+        qDebug() << query.lastError();
+
+    else {
+        while(query.next()) {
+            ui->dateLine->setText(query.value(0).toString());
+            ui->itemLine->setText(query.value(1).toString());
+            ui->amountLine->setText(query.value(2).toString());
+            ui->noteLine->setText(query.value(3).toString());
+        }
+    }
+}
+
+void finance_page::editPurchases() {
+    QSqlQuery query;
+
+    QString date = ui->dateLine->text();
+    QString item = ui->itemLine->text();
+    QString spent = ui->amountLine->text();
+    QString note = ui->noteLine->toPlainText();
+
+    query.prepare("UPDATE Purchases "
+                  "SET Date = :date, "
+                  "    Item = :item, "
+                  "    Spent = :spent, "
+                  "    Note = :note "
+                  "WHERE Item = :item");
+
+    query.bindValue(":date", date);
+    query.bindValue(":item", item);
+    query.bindValue(":spent", spent);
+    query.bindValue(":note", note);
+
+    if(!query.exec())
+        qDebug() << query.lastError();
+    refreshPurchases();
+}
+
+void finance_page::deletePurchases() {
+    QSqlQuery query;
+    QString date = ui->dateLine->text();
+    QString item = ui->itemLine->text();
+    query.prepare("DELETE FROM Purchases WHERE Date = '" + date + "' AND Item = '" + item + "';");
+
+    if(!query.exec())
+        qDebug() << query.lastError();
+    refreshPurchases();
 }
 
 void finance_page::goToPaychecks() {
