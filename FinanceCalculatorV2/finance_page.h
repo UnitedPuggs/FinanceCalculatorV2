@@ -13,7 +13,15 @@ class finance_page : public QMainWindow
 public:
     explicit finance_page(QWidget *parent = nullptr);
     ~finance_page();
+private slots:
+    void searchPurchases();
+    void addToPurchases();
+    void goToPurchases();
+    void refreshPurchases();
 
+    void accountSettings();
+
+    void goToPaychecks();
 private:
     Ui::finance_page *ui;
 };

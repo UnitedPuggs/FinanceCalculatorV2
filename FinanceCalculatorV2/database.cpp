@@ -4,7 +4,7 @@ database::database() {
     db = QSqlDatabase::addDatabase("QSQLITE");
     QFileInfo base("database.sqlite");
     QString DB_PATH = base.absoluteFilePath();
-    qDebug() << DB_PATH;
+   // qDebug() << DB_PATH;
     db.setDatabaseName(DB_PATH);
     db.open();
 }
@@ -21,4 +21,8 @@ void database::createDatabase() {
                "Date   VARCHAR(10),"
                "Amount INTEGER NOT NULL,"
                "Note   TEXT);");
+
+    query.exec("CREATE TABLE Details("
+               "Username VARCHAR(50),"
+               "Password TEXT);");
 }

@@ -21,6 +21,8 @@ void login_screen::login() {
     if (username == "test" && password == "test") {
         finance = new finance_page;
         finance->show();
+        ui->usernameLine->setText("");
+        ui->passwordLine->setText("");
     }
     else {
         QMessageBox::warning(this, "Fail!", "The username or password entered was invalid!");

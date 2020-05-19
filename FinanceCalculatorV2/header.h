@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <QList>
 #include <QFile>
+#include <QMessageBox>
 
 // SQL
 #include <QtSql>
