@@ -1,6 +1,8 @@
 #include "finance_page.h"
 #include "ui_finance_page.h"
 #include "header.h"
+#include <QRegExp>
+#include <QRegExpValidator>
 
 finance_page::finance_page(QWidget *parent) :
     QMainWindow(parent),
@@ -9,6 +11,11 @@ finance_page::finance_page(QWidget *parent) :
 
     refreshPurchases();
     refreshPaychecks();
+
+    ui->dateLine->setValidator(new QRegExpValidator(QRegExp("([1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d")));
+    ui->pdateLine->setValidator(new QRegExpValidator(QRegExp("([1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d")));
+    ui->amountLine->setValidator(new QRegExpValidator(QRegExp("[1-9][0-9]{0,5}\\.[0-9]{1,2}")));
+    ui->pamountLine->setValidator(new QRegExpValidator(QRegExp("[1-9][0-9]{0,5}\\.[0-9]{1,2}")));
 }
 
 finance_page::~finance_page()
@@ -322,6 +329,8 @@ void finance_page::refreshEarnings() {
 
     while (query1.next())
         saving = query1.value(0).toDouble();
+
+
     if (spending == 0)
         temp.exec("SELECT Sum(Earnings.Spending) FROM EARNINGS");
 
