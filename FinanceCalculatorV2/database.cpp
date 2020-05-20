@@ -26,4 +26,9 @@ void database::createDatabase() {
     query.exec("CREATE TABLE Details("
                "Username VARCHAR(50),"
                "Password TEXT);");
+
+    query.exec("CREATE TABLE Earnings("
+               "Date     VARCHAR(10),"
+               "Spending INTEGER NOT NULL,"
+               "Saving   INTEGER NOT NULL);");
 }

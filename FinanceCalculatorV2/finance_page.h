@@ -23,8 +23,18 @@ private slots:
     void deletePurchases();
 
     void accountSettings();
+    void refreshEarnings();
 
     void goToPaychecks();
+    void searchPaychecks();
+    void refreshPaychecks();
+    void spendPercent();
+    void savePercent();
+    void submitPaycheck();
+    void editPaycheck();
+    void deletePaycheck();
+    void paychecksClicked(const QModelIndex &index);
+
 private:
     Ui::finance_page *ui;
 };
