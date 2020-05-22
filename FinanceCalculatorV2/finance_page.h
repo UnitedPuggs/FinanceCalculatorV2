@@ -35,6 +35,14 @@ private slots:
     void deletePaycheck();
     void paychecksClicked(const QModelIndex &index);
 
+    void editEarning();
+    void earningsClicked(const QModelIndex &index);
+    void submitEarning();
+    void deleteEarning();
+    void goToEarnings();
+    void searchEarnings();
+    void refreshEarningsPage();
+
 private:
     Ui::finance_page *ui;
 };

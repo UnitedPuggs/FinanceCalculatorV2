@@ -11,11 +11,15 @@ finance_page::finance_page(QWidget *parent) :
 
     refreshPurchases();
     refreshPaychecks();
+    refreshEarningsPage();
 
     ui->dateLine->setValidator(new QRegExpValidator(QRegExp("([1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d")));
     ui->pdateLine->setValidator(new QRegExpValidator(QRegExp("([1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d")));
+    ui->edateLine->setValidator(new QRegExpValidator(QRegExp("([1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d")));
     ui->amountLine->setValidator(new QRegExpValidator(QRegExp("[1-9][0-9]{0,5}\\.[0-9]{1,2}")));
     ui->pamountLine->setValidator(new QRegExpValidator(QRegExp("[1-9][0-9]{0,5}\\.[0-9]{1,2}")));
+    ui->espendLine->setValidator(new QRegExpValidator(QRegExp("[1-9][0-9]{0,5}\\.[0-9]{1,2}")));
+    ui->esaveLine->setValidator(new QRegExpValidator(QRegExp("[1-9][0-9]{0,5}\\.[0-9]{1,2}")));
 }
 
 finance_page::~finance_page()
@@ -153,6 +157,11 @@ void finance_page::editPurchases() {
 
     if(!query.exec())
         qDebug() << query.lastError();
+
+    ui->dateLine->setText("");
+    ui->itemLine->setText("");
+    ui->amountLine->setText("");
+    ui->noteLine->setText("");
     refreshPurchases();
 }
 
@@ -164,6 +173,11 @@ void finance_page::deletePurchases() {
 
     if(!query.exec())
         qDebug() << query.lastError();
+
+    ui->dateLine->setText("");
+    ui->itemLine->setText("");
+    ui->amountLine->setText("");
+    ui->noteLine->setText("");
     refreshPurchases();
 }
 
@@ -188,10 +202,9 @@ void finance_page::searchPaychecks() {
 
     model->setQuery(query);
     ui->paycheckTable->setModel(model);
-    ui->paycheckTable->setColumnWidth(0, 100);
-    ui->paycheckTable->setColumnWidth(1, 180);
-    ui->paycheckTable->setColumnWidth(2, 140);
-    ui->paycheckTable->setColumnWidth(3, 164);
+    ui->paycheckTable->setColumnWidth(0, 192);
+    ui->paycheckTable->setColumnWidth(1, 192);
+    ui->paycheckTable->setColumnWidth(2, 200);
 
     for(int i = 0; i < model->rowCount(); ++i)
         ui->paycheckTable->resizeRowToContents(i);
@@ -215,7 +228,7 @@ void finance_page::refreshPaychecks() {
     ui->paycheckTable->setColumnWidth(2, 200);
 
     for(int i = 0; i < model->rowCount(); ++i)
-        ui->financeTable->resizeRowToContents(i);
+        ui->paycheckTable->resizeRowToContents(i);
 
     refreshEarnings();
 }
@@ -273,6 +286,7 @@ void finance_page::submitPaycheck() {
         ui->noteEdit->setText("");
         refreshPaychecks();
         refreshEarnings();
+        refreshEarningsPage();
     }
 }
 
@@ -295,6 +309,10 @@ void finance_page::editPaycheck() {
 
     if(!query.exec())
         qDebug() << query.lastError();
+
+    ui->pdateLine->setText("");
+    ui->pamountLine->setText("");
+    ui->noteEdit->setText("");
     refreshPaychecks();
     refreshEarnings();
 }
@@ -313,6 +331,9 @@ void finance_page::deletePaycheck() {
     if(!earnings.exec())
         qDebug() << earnings.lastError();
 
+    ui->pdateLine->setText("");
+    ui->pamountLine->setText("");
+    ui->noteEdit->setText("");
     refreshPaychecks();
     refreshEarnings();
 }
@@ -342,6 +363,11 @@ void finance_page::refreshEarnings() {
     ui->savingsLine->setText(QString::number(saving, 'f', 2));
 }
 
+void finance_page::goToEarnings() {
+    ui->stackedWidget->setCurrentIndex(2);
+    refreshEarningsPage();
+}
+
 void finance_page::paychecksClicked(const QModelIndex &index) {
     QSqlQuery query;
     QString val = ui->paycheckTable->model()->data(index).toString();
@@ -358,4 +384,137 @@ void finance_page::paychecksClicked(const QModelIndex &index) {
             ui->noteEdit->setText(query.value(2).toString());
         }
     }
+}
+
+void finance_page::editEarning() {
+    QSqlQuery query;
+
+    QString date = ui->edateLine->text();
+    QString spent = ui->espendLine->text();
+    QString saved = ui->esaveLine->text();
+
+    query.prepare("UPDATE Earnings SET Date = '" + date + "', Spending = " + spent + ", Saving = " + saved + " WHERE Date = '" + date + "'");
+
+    if(!query.exec())
+        qDebug() << query.lastError();
+
+    ui->edateLine->setText("");
+    ui->espendLine->setText("");
+    ui->esaveLine->setText("");
+
+    refreshEarningsPage();
+    refreshEarnings();
+}
+
+void finance_page::submitEarning() {
+    QSqlQuery query;
+
+    QString date = ui->edateLine->text();
+
+    QString spending = ui->espendLine->text();
+    QString saving = ui->esaveLine->text();
+
+    if (date == "")
+        QMessageBox::warning(this, "", "Please enter a date!");
+    else if (spending == "" || saving == "")
+        QMessageBox::warning(this, "", "Please enter an amount!");
+    else {
+        query.prepare("INSERT OR IGNORE INTO Earnings(Date, Spending, Saving) "
+                      "VALUES(:date, :spend, :save);");
+        query.bindValue(":date", date);
+        query.bindValue(":spend", spending);
+        query.bindValue(":save", saving);
+
+        if(!query.exec())
+            qDebug() << query.lastError();
+
+        QMessageBox::information(this, "Success!", "Purchase added!");
+
+        ui->edateLine->setText("");
+        ui->espendLine->setText("");
+        ui->esaveLine->setText("");
+        refreshEarnings();
+        refreshEarningsPage();
+    }
+}
+
+void finance_page::deleteEarning() {
+    QSqlQuery query, actuallydelete;
+    QString date = ui->edateLine->text();
+    QString spent = ui->espendLine->text();
+    QString saved = ui->esaveLine->text();
+
+
+
+    query.prepare("DELETE FROM Earnings WHERE Date = '" + date + "' AND Spending LIKE '%" + spent + "%' AND Saving LIKE '%" + saved + "%'");
+
+    if(!query.exec())
+        qDebug() << query.lastError();
+
+    ui->edateLine->setText("");
+    ui->espendLine->setText("");
+    ui->esaveLine->setText("");
+    refreshEarningsPage();
+    refreshEarnings();
+}
+
+void finance_page::earningsClicked(const QModelIndex &index) {
+    QSqlQuery query;
+    QString val = ui->earningsTable->model()->data(index).toString();
+
+    query.prepare("SELECT * FROM Earnings WHERE Date = '" + val + "';");
+
+    if(!query.exec())
+        qDebug() << query.lastError();
+
+    else {
+        while(query.next()) {
+            ui->edateLine->setText(query.value(0).toString());
+            ui->espendLine->setText(QString::number(query.value(1).toDouble(), 'f', 1));
+            ui->esaveLine->setText(QString::number(query.value(2).toDouble(), 'f', 1));
+        }
+    }
+}
+
+void finance_page::refreshEarningsPage() {
+    QSqlQuery query;
+    QSqlRecord record;
+    QSqlQueryModel *model = new QSqlQueryModel();
+
+    query.prepare("SELECT * FROM Earnings ORDER BY Date ASC");
+
+    if(!query.exec())
+        qDebug() << query.lastError();
+
+    model->setQuery(query);
+    ui->earningsTable->setModel(model);
+    ui->earningsTable->setColumnWidth(0, 192);
+    ui->earningsTable->setColumnWidth(1, 192);
+    ui->earningsTable->setColumnWidth(2, 200);
+
+    for(int i = 0; i < model->rowCount(); ++i)
+        ui->earningsTable->resizeRowToContents(i);
+
+    refreshEarnings();
+}
+
+void finance_page::searchEarnings() {
+    QSqlQuery query;
+    QSqlRecord record;
+    QSqlQueryModel *model = new QSqlQueryModel();
+    QString search = ui->paycheckSearchLine->text();
+
+    query.prepare("SELECT * FROM Earnings WHERE Date LIKE '%" + search + "%'");
+
+    if(!query.exec())
+        qDebug() << query.lastError();
+
+    model->setQuery(query);
+    ui->earningsTable->setModel(model);
+    ui->earningsTable->setColumnWidth(0, 192);
+    ui->earningsTable->setColumnWidth(1, 192);
+    ui->earningsTable->setColumnWidth(2, 200);
+
+    for(int i = 0; i < model->rowCount(); ++i)
+        ui->earningsTable->resizeRowToContents(i);
 }

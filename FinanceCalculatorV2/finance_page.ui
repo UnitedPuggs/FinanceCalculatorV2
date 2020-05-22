@@ -394,7 +394,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="submitPaycheck">
       <property name="geometry">
        <rect>
         <x>60</x>
@@ -407,7 +407,7 @@
        <string>Submit</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="editPaycheck">
       <property name="geometry">
        <rect>
         <x>60</x>
@@ -420,11 +420,167 @@
        <string>Edit</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="deletePaycheck">
       <property name="geometry">
        <rect>
         <x>60</x>
         <y>430</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Delete</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="earningsPage">
+     <widget class="QTableView" name="earningsTable">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>40</y>
+        <width>601</width>
+        <height>431</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="edateLabel">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>60</y>
+        <width>31</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Date</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="edateLine">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>80</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="espendLabel">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>110</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Spending</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="espendLine">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>130</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="esaveLabel">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>160</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Saving</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="esaveLine">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>180</y>
+        <width>113</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="esearchLabel">
+      <property name="geometry">
+       <rect>
+        <x>218</x>
+        <y>18</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Search:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="esearchLine">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>15</y>
+        <width>131</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="esearchButton">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>15</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Search</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="esubmitButton">
+      <property name="geometry">
+       <rect>
+        <x>55</x>
+        <y>210</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Submit</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="earningEditButton">
+      <property name="geometry">
+       <rect>
+        <x>55</x>
+        <y>240</y>
+        <width>80</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Edit</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="edeleteButton">
+      <property name="geometry">
+       <rect>
+        <x>55</x>
+        <y>270</y>
         <width>80</width>
         <height>21</height>
        </rect>
@@ -461,7 +617,7 @@
      <string>Paychecks</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="accountSettings">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -524,6 +680,19 @@
     </property>
     <property name="readOnly">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="earningsPageButton">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>170</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Earnings</string>
     </property>
    </widget>
   </widget>
@@ -590,7 +759,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton</sender>
+   <sender>accountSettings</sender>
    <signal>clicked()</signal>
    <receiver>finance_page</receiver>
    <slot>accountSettings()</slot>
@@ -782,7 +951,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_2</sender>
+   <sender>submitPaycheck</sender>
    <signal>clicked()</signal>
    <receiver>finance_page</receiver>
    <slot>submitPaycheck()</slot>
@@ -798,7 +967,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_3</sender>
+   <sender>editPaycheck</sender>
    <signal>clicked()</signal>
    <receiver>finance_page</receiver>
    <slot>editPaycheck()</slot>
@@ -814,7 +983,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_4</sender>
+   <sender>deletePaycheck</sender>
    <signal>clicked()</signal>
    <receiver>finance_page</receiver>
    <slot>deletePaycheck()</slot>
@@ -845,6 +1014,134 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>earningsPageButton</sender>
+   <signal>clicked()</signal>
+   <receiver>finance_page</receiver>
+   <slot>goToEarnings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>72</x>
+     <y>196</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>21</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>esearchLine</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>finance_page</receiver>
+   <slot>searchEarnings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>492</x>
+     <y>101</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>325</x>
+     <y>46</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>esearchButton</sender>
+   <signal>clicked()</signal>
+   <receiver>finance_page</receiver>
+   <slot>searchEarnings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>581</x>
+     <y>92</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>536</x>
+     <y>27</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>earningsTable</sender>
+   <signal>viewportEntered()</signal>
+   <receiver>finance_page</receiver>
+   <slot>refreshEarningsPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>464</x>
+     <y>356</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>100</x>
+     <y>363</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>esubmitButton</sender>
+   <signal>clicked()</signal>
+   <receiver>finance_page</receiver>
+   <slot>submitEarning()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>201</x>
+     <y>293</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>42</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>earningEditButton</sender>
+   <signal>clicked()</signal>
+   <receiver>finance_page</receiver>
+   <slot>editEarning()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>221</x>
+     <y>325</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>63</x>
+     <y>318</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edeleteButton</sender>
+   <signal>clicked()</signal>
+   <receiver>finance_page</receiver>
+   <slot>deleteEarning()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>198</x>
+     <y>347</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>58</x>
+     <y>408</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>earningsTable</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>finance_page</receiver>
+   <slot>earningsClicked(QModelIndex)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>467</x>
+     <y>428</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>82</x>
+     <y>459</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>searchPurchases()</slot>
@@ -864,5 +1161,12 @@
   <slot>editPaycheck()</slot>
   <slot>deletePaycheck()</slot>
   <slot>paychecksClicked(QModelIndex)</slot>
+  <slot>goToEarnings()</slot>
+  <slot>searchEarnings()</slot>
+  <slot>refreshEarningsPage()</slot>
+  <slot>submitEarning()</slot>
+  <slot>editEarning()</slot>
+  <slot>deleteEarning()</slot>
+  <slot>earningsClicked(QModelIndex)</slot>
  </slots>
 </ui>
