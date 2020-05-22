@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_finance_page_t {
-    QByteArrayData data[22];
-    char stringdata0[303];
+    QByteArrayData data[29];
+    char stringdata0[407];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -53,7 +53,14 @@ QT_MOC_LITERAL(17, 231, 11), // "savePercent"
 QT_MOC_LITERAL(18, 243, 14), // "submitPaycheck"
 QT_MOC_LITERAL(19, 258, 12), // "editPaycheck"
 QT_MOC_LITERAL(20, 271, 14), // "deletePaycheck"
-QT_MOC_LITERAL(21, 286, 16) // "paychecksClicked"
+QT_MOC_LITERAL(21, 286, 16), // "paychecksClicked"
+QT_MOC_LITERAL(22, 303, 11), // "editEarning"
+QT_MOC_LITERAL(23, 315, 15), // "earningsClicked"
+QT_MOC_LITERAL(24, 331, 13), // "submitEarning"
+QT_MOC_LITERAL(25, 345, 13), // "deleteEarning"
+QT_MOC_LITERAL(26, 359, 12), // "goToEarnings"
+QT_MOC_LITERAL(27, 372, 14), // "searchEarnings"
+QT_MOC_LITERAL(28, 387, 19) // "refreshEarningsPage"
 
     },
     "finance_page\0searchPurchases\0\0"
@@ -65,7 +72,10 @@ QT_MOC_LITERAL(21, 286, 16) // "paychecksClicked"
     "searchPaychecks\0refreshPaychecks\0"
     "spendPercent\0savePercent\0submitPaycheck\0"
     "editPaycheck\0deletePaycheck\0"
-    "paychecksClicked"
+    "paychecksClicked\0editEarning\0"
+    "earningsClicked\0submitEarning\0"
+    "deleteEarning\0goToEarnings\0searchEarnings\0"
+    "refreshEarningsPage"
 };
 #undef QT_MOC_LITERAL
 
@@ -75,7 +85,7 @@ static const uint qt_meta_data_finance_page[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      18,   14, // methods
+      25,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -83,24 +93,31 @@ static const uint qt_meta_data_finance_page[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  104,    2, 0x08 /* Private */,
-       3,    0,  105,    2, 0x08 /* Private */,
-       4,    0,  106,    2, 0x08 /* Private */,
-       5,    0,  107,    2, 0x08 /* Private */,
-       6,    1,  108,    2, 0x08 /* Private */,
-       9,    0,  111,    2, 0x08 /* Private */,
-      10,    0,  112,    2, 0x08 /* Private */,
-      11,    0,  113,    2, 0x08 /* Private */,
-      12,    0,  114,    2, 0x08 /* Private */,
-      13,    0,  115,    2, 0x08 /* Private */,
-      14,    0,  116,    2, 0x08 /* Private */,
-      15,    0,  117,    2, 0x08 /* Private */,
-      16,    0,  118,    2, 0x08 /* Private */,
-      17,    0,  119,    2, 0x08 /* Private */,
-      18,    0,  120,    2, 0x08 /* Private */,
-      19,    0,  121,    2, 0x08 /* Private */,
-      20,    0,  122,    2, 0x08 /* Private */,
-      21,    1,  123,    2, 0x08 /* Private */,
+       1,    0,  139,    2, 0x08 /* Private */,
+       3,    0,  140,    2, 0x08 /* Private */,
+       4,    0,  141,    2, 0x08 /* Private */,
+       5,    0,  142,    2, 0x08 /* Private */,
+       6,    1,  143,    2, 0x08 /* Private */,
+       9,    0,  146,    2, 0x08 /* Private */,
+      10,    0,  147,    2, 0x08 /* Private */,
+      11,    0,  148,    2, 0x08 /* Private */,
+      12,    0,  149,    2, 0x08 /* Private */,
+      13,    0,  150,    2, 0x08 /* Private */,
+      14,    0,  151,    2, 0x08 /* Private */,
+      15,    0,  152,    2, 0x08 /* Private */,
+      16,    0,  153,    2, 0x08 /* Private */,
+      17,    0,  154,    2, 0x08 /* Private */,
+      18,    0,  155,    2, 0x08 /* Private */,
+      19,    0,  156,    2, 0x08 /* Private */,
+      20,    0,  157,    2, 0x08 /* Private */,
+      21,    1,  158,    2, 0x08 /* Private */,
+      22,    0,  161,    2, 0x08 /* Private */,
+      23,    1,  162,    2, 0x08 /* Private */,
+      24,    0,  165,    2, 0x08 /* Private */,
+      25,    0,  166,    2, 0x08 /* Private */,
+      26,    0,  167,    2, 0x08 /* Private */,
+      27,    0,  168,    2, 0x08 /* Private */,
+      28,    0,  169,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -121,6 +138,13 @@ static const uint qt_meta_data_finance_page[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -149,6 +173,13 @@ void finance_page::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 15: _t->editPaycheck(); break;
         case 16: _t->deletePaycheck(); break;
         case 17: _t->paychecksClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 18: _t->editEarning(); break;
+        case 19: _t->earningsClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 20: _t->submitEarning(); break;
+        case 21: _t->deleteEarning(); break;
+        case 22: _t->goToEarnings(); break;
+        case 23: _t->searchEarnings(); break;
+        case 24: _t->refreshEarningsPage(); break;
         default: ;
         }
     }
@@ -183,13 +214,13 @@ int finance_page::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 18)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 25;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 18)
+        if (_id < 25)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 18;
+        _id -= 25;
     }
     return _id;
 }
