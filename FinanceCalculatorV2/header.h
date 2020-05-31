@@ -1,6 +1,7 @@
 #ifndef HEADER_H
 #define HEADER_H
-
+#define usernameLine ul
+#define passwordLine pl
 // CORE
 #include <QCoreApplication>
 #include <QApplication>

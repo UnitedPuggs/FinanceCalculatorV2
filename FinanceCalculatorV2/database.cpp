@@ -19,13 +19,17 @@ void database::createDatabase() {
                "UNIQUE(Date, Item));");
 
     query.exec("CREATE TABLE Paychecks("
-               "Date   VARCHAR(10),"
-               "Amount DECIMAL(7, 2) NOT NULL,"
-               "Note   TEXT);");
+               "Date     VARCHAR(10),"
+               "Amount   DECIMAL(7, 2) NOT NULL,"
+               "Note     TEXT,"
+               "SpendPct DECIMAL (4, 2) NOT NULL,"
+               "SavePct  DECIMAL (4, 2) NOT NULL);");
 
     query.exec("CREATE TABLE Details("
                "Username VARCHAR(50),"
-               "Password TEXT);");
+               "Password TEXT,"
+               "Bonk     TEXT,"
+               "Honk     TEXT);");
 
     query.exec("CREATE TABLE Earnings("
                "Date     VARCHAR(10),"

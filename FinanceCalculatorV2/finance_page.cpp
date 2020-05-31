@@ -28,7 +28,9 @@ finance_page::~finance_page()
 }
 
 
-
+/*!
+ * \brief Function for searching through purchases
+ */
 void finance_page::searchPurchases() {
     QSqlQuery query;
     QSqlRecord record;
@@ -52,6 +54,9 @@ void finance_page::searchPurchases() {
 
 }
 
+/*!
+ * \brief Function that actually lets you add a purchase
+ */
 void finance_page::addToPurchases() {
     QSqlQuery query;
 
@@ -88,10 +93,16 @@ void finance_page::addToPurchases() {
     }
 }
 
+/*!
+ * \brief Sets the index to the purchases window
+ */
 void finance_page::goToPurchases() {
     ui->stackedWidget->setCurrentIndex(0);
 }
 
+/*!
+ * \brief Updates the tableview to pull from the purchases table
+ */
 void finance_page::refreshPurchases() {
     QSqlQuery query;
     QSqlRecord record;
@@ -115,7 +126,9 @@ void finance_page::refreshPurchases() {
     refreshEarnings();
 }
 
-
+/*!
+ * \brief Sets the purchases shit to the lineedits
+ */
 void finance_page::contentClicked(const QModelIndex &index) {
     QSqlQuery query;
     QString val = ui->financeTable->model()->data(index).toString();
@@ -135,6 +148,9 @@ void finance_page::contentClicked(const QModelIndex &index) {
     }
 }
 
+/*!
+ * \brief Updates the purchases table to match whatever the fuck the user inputs
+ */
 void finance_page::editPurchases() {
     QSqlQuery query;
 
@@ -165,6 +181,9 @@ void finance_page::editPurchases() {
     refreshPurchases();
 }
 
+/*!
+ * \brief Pretty obvious that the purchases get deleted
+ */
 void finance_page::deletePurchases() {
     QSqlQuery query;
     QString date = ui->dateLine->text();
@@ -181,14 +200,23 @@ void finance_page::deletePurchases() {
     refreshPurchases();
 }
 
+/*!
+ * \brief Sets the index to the paychecks page
+ */
 void finance_page::goToPaychecks() {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
+/*!
+ * \brief Lets the user adjust their account settings
+ */
 void finance_page::accountSettings() {
 
 }
 
+/*!
+ * \brief Searches the paychecks homie
+ */
 void finance_page::searchPaychecks() {
     QSqlQuery query;
     QSqlRecord record;
@@ -211,6 +239,9 @@ void finance_page::searchPaychecks() {
 
 }
 
+/*!
+ * \brief Refreshes the tableview for the paychecks
+ */
 void finance_page::refreshPaychecks() {
     QSqlQuery query;
     QSqlRecord record;
@@ -233,16 +264,25 @@ void finance_page::refreshPaychecks() {
     refreshEarnings();
 }
 
+/*!
+ * \brief Does the math for the saving percent, to even it out
+ */
 void finance_page::spendPercent() {
     double spendingPercent = ui->spendingPercent->value();
     ui->savingPercent->setValue(qFabs(spendingPercent-100));
 }
 
+/*!
+ * \brief Does the math for the spending percent, to even it out
+ */
 void finance_page::savePercent() {
     double savingPercent = ui->savingPercent->value();
     ui->spendingPercent->setValue(qFabs(savingPercent-100));
 }
 
+/*!
+ * \brief Lets the user actually submit their paycheck
+ */
 void finance_page::submitPaycheck() {
     QSqlQuery query, earnings;
 
@@ -290,6 +330,9 @@ void finance_page::submitPaycheck() {
     }
 }
 
+/*!
+ * \brief Lets the user change their paycheck
+ */
 void finance_page::editPaycheck() {
     QSqlQuery query;
 
@@ -313,10 +356,14 @@ void finance_page::editPaycheck() {
     ui->pdateLine->setText("");
     ui->pamountLine->setText("");
     ui->noteEdit->setText("");
+
     refreshPaychecks();
     refreshEarnings();
 }
 
+/*!
+ * \brief Lets the user delete a paycheck
+ */
 void finance_page::deletePaycheck() {
     QSqlQuery query, earnings;
     QString date = ui->pdateLine->text();
@@ -338,9 +385,12 @@ void finance_page::deletePaycheck() {
     refreshEarnings();
 }
 
+/*!
+ * \brief Does the math for what the user's actual spending is after purchases
+ */
 void finance_page::refreshEarnings() {
     QSqlQuery query, query1, temp;
-    double spending, saving;
+    double spending = 0, saving = 0;
     query.exec("SELECT ((SELECT Sum(Earnings.Spending) FROM Earnings) - (SELECT Sum(Purchases.Spent) FROM Purchases))");
 
     while(query.next())
@@ -363,11 +413,18 @@ void finance_page::refreshEarnings() {
     ui->savingsLine->setText(QString::number(saving, 'f', 2));
 }
 
+/*!
+ * \brief Goes to the index for earnings
+ */
 void finance_page::goToEarnings() {
     ui->stackedWidget->setCurrentIndex(2);
     refreshEarningsPage();
 }
 
+/*!
+ * \brief Selects shit from paychecks whenever you click date
+ * \param index
+ */
 void finance_page::paychecksClicked(const QModelIndex &index) {
     QSqlQuery query;
     QString val = ui->paycheckTable->model()->data(index).toString();
@@ -386,6 +443,9 @@ void finance_page::paychecksClicked(const QModelIndex &index) {
     }
 }
 
+/*!
+ * \brief Function for editing earnings obviously
+ */
 void finance_page::editEarning() {
     QSqlQuery query;
 
@@ -406,6 +466,9 @@ void finance_page::editEarning() {
     refreshEarnings();
 }
 
+/*!
+ * \brief Function lets you submit an earning
+ */
 void finance_page::submitEarning() {
     QSqlQuery query;
 
@@ -438,6 +501,9 @@ void finance_page::submitEarning() {
     }
 }
 
+/*!
+ * \brief Guess what this does
+ */
 void finance_page::deleteEarning() {
     QSqlQuery query, actuallydelete;
     QString date = ui->edateLine->text();
@@ -458,6 +524,10 @@ void finance_page::deleteEarning() {
     refreshEarnings();
 }
 
+/*!
+ * \brief Adds all the shit where it needs to go when you click the date
+ * \param index
+ */
 void finance_page::earningsClicked(const QModelIndex &index) {
     QSqlQuery query;
     QString val = ui->earningsTable->model()->data(index).toString();
@@ -476,6 +546,9 @@ void finance_page::earningsClicked(const QModelIndex &index) {
     }
 }
 
+/*!
+ * \brief Confusing, but this updates the tableview with info from the db
+ */
 void finance_page::refreshEarningsPage() {
     QSqlQuery query;
     QSqlRecord record;
@@ -498,6 +571,9 @@ void finance_page::refreshEarningsPage() {
     refreshEarnings();
 }
 
+/*!
+ * \brief Fucking guess
+ */
 void finance_page::searchEarnings() {
     QSqlQuery query;
     QSqlRecord record;
