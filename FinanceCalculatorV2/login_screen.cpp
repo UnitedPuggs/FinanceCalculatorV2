@@ -6,6 +6,7 @@
 #include <vector>
 #include <time.h>
 #include <stdio.h>
+#include <iostream>
 
 login_screen::login_screen(QWidget *parent)
     : QMainWindow(parent)
@@ -23,16 +24,16 @@ void login_screen::login() {
     QString z = ui->ul->text();
     QString v = ui->pl->text();
 
-    if (o(z, v)) {
+    if (z == "test" && v == "test") {
         finance = new finance_page;
         finance->show();
-        a();
+        //a();
         ui->ul->setText("");
         ui->pl->setText("");
         this->hide();
     }
     else {
-        a();
+       // a();
         QMessageBox::warning(this, "Fail!", "The username or password entered was invalid!");
     }
 }
@@ -41,19 +42,25 @@ void login_screen::a() {
     QSqlQuery q;
     srand(time(NULL));
     std::vector<int> s, m;
+    QString x = ui->ul->text();
+    QString b = ui->pl->text();
 
-    std::string x = ui->ul->text().toStdString();
-    std::string b = ui->pl->text().toStdString();
-
-    for(unsigned int i = 0; i < x.length(); ++i) {
-        int ao = rand() % 12;
-        x[i] = x[i] + ao;
+    for(int i = 0; i < x.length(); ++i) {
+        //instead of going based off of what I have here already
+        //why not just set it to be whatever between 33 and 126 and then calculate a shift?
+        //maybe that's less secure, dunno?
+        int ao = rand() % (254 - x.at(i).unicode());
+        if (x.at(i).unicode() + ao == 127) {
+                
+        } else {
+            x[i] = x.at(i).toLatin1() + ao;
+        }
         s.push_back(ao);
     }
 
-    for(unsigned int i = 0; i < b.length(); ++i) {
-        int op = rand() % 12;
-        b[i] = b[i] + op;
+    for(int i = 0; i < b.length(); ++i) {
+        int op = rand() % (126 - b.at(i).unicode());
+        b[i] = b.at(i).toLatin1() + op;
         m.push_back(op);
     }
     std::string aa = "", lo = "";
@@ -68,8 +75,9 @@ void login_screen::a() {
 //    q.bindValue(":pass", QString::fromStdString(b));
 //    q.bindValue(":b", QString::fromStdString(aa));
 //    q.bindValue(":h", QString::fromStdString(lo));
-
-    q.prepare("UPDATE Details SET Username = '" + QString::fromStdString(x) + "', Password = '" + QString::fromStdString(b) + "', Bonk = '" + QString::fromStdString(aa) + "', Honk = '" + QString::fromStdString(lo) + "'");
+//    qDebug() << "QSTRINGS " + QString::fromStdString(x) + " " + QString::fromStdString(b);
+//    std::cout << "STD::STRINGS " + x + " " + b << std::endl;
+    q.prepare("UPDATE Details SET Username = '" + x + "', Password = '" + b + "', Bonk = '" + QString::fromStdString(aa) + "', Honk = '" + QString::fromStdString(lo) + "'");
     if(!q.exec())
         qDebug() << q.lastError();
 
@@ -109,20 +117,20 @@ bool login_screen::o(QString one, QString two) {//gotta make this equal to make 
             d = "";
         }
     }
-    std::string q = n.toStdString();
+    //std::string q = n.toStdString();
     for(int i = 0; i < n.size(); ++i) {
-        q[i] = q[i] - f[i];
+        n[i] = n.at(i).toLatin1() - f[i];
     }
-    std::string y = k.toStdString();
+    //std::string y = k.toStdString();
     for(int i = 0; i < k.size(); ++i) {
-        y[i] = y[i] - j[i];
+        k[i] = k.at(i).toLatin1() - j[i];
     }
 
-    QString bu = QString::fromStdString(q);
-    QString bw = QString::fromStdString(y);
-    qDebug() << bu;
-    qDebug() << bw;
-    if(bu == one && bw == two)
+//    QString bu = QString::fromStdString(q);
+//    QString bw = QString::fromStdString(y);
+    qDebug() << n + " " + one;
+    qDebug() << k + " " + two;
+    if(n == one && k == two)
         return true;
     else
         return false;
