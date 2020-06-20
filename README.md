@@ -2,7 +2,7 @@
 The finance calculator you know and love, but without the memory leak or math issues! I actually know how to code decent stuff now, wow!
 # Features
 ## Login with custom encryption and decryption
-I really value my privacy, especially when it comes to monetary matters, and I'm sure my users would be big fans, so I included a login screen that encrypts and decrypts the user's information using a custom made one-time pad (which has not yet been perfected!).
+I really value my privacy, especially when it comes to monetary matters, and I'm sure my users would be big fans, so I included a login screen that encrypts and decrypts the user's information using a custom made one-time pad (which has not yet been perfected!).<br/>
 ![Login](https://github.com/UnitedPuggs/FinanceCalculatorV2/blob/master/login.png)
 
 ## Purchases page with search bar, editing, and deletion
