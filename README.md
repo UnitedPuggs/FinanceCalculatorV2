@@ -18,7 +18,7 @@ Just kidding, everything is generic in this program to some degree. This shows y
 ![Earnings](https://github.com/UnitedPuggs/FinanceCalculatorV2/blob/master/earnings.png)
 
 # Features to come
-Well, not all features are available as of now and there are quite a few planned features. That include: 
+Well, not all features are available as of now and there are quite a few planned features. That includes: 
 * Improving encryption and decryption algorithm
 * Add a savings goal
 * Once spending goes negative, savings starts to get taken out
