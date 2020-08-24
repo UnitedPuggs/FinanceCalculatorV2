@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'finance_page.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.1
+** Created by: Qt User Interface Compiler version 5.15.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -85,10 +85,10 @@ public:
     QPushButton *editPaycheck;
     QPushButton *deletePaycheck;
     QWidget *horizontalLayoutWidget_3;
-    QHBoxLayout *horizontalLayout_6;
+    QHBoxLayout *paycheckSearchHorizLayout;
     QLabel *paycheckSearchLabel;
     QLineEdit *paycheckSearchLine;
-    QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *searchHorizSpacer;
     QPushButton *paycheckSearchButton;
     QWidget *earningsPage;
     QTableView *earningsTable;
@@ -129,6 +129,8 @@ public:
     QWidget *verticalLayoutWidget_16;
     QVBoxLayout *acctvert;
     QPushButton *accountSettings;
+    QLabel *currentPageLabel;
+    QLabel *pageLabel;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -157,7 +159,7 @@ public:
         financeTable->setGeometry(QRect(200, 40, 601, 431));
         verticalLayoutWidget = new QWidget(financePage);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(20, 40, 151, 321));
+        verticalLayoutWidget->setGeometry(QRect(20, 40, 161, 411));
         infovert = new QVBoxLayout(verticalLayoutWidget);
         infovert->setObjectName(QString::fromUtf8("infovert"));
         infovert->setContentsMargins(0, 0, 0, 0);
@@ -313,7 +315,7 @@ public:
         paycheckTable->setGeometry(QRect(200, 40, 601, 431));
         verticalLayoutWidget_10 = new QWidget(paycheckPage);
         verticalLayoutWidget_10->setObjectName(QString::fromUtf8("verticalLayoutWidget_10"));
-        verticalLayoutWidget_10->setGeometry(QRect(20, 40, 151, 345));
+        verticalLayoutWidget_10->setGeometry(QRect(30, 40, 151, 345));
         checkvert = new QVBoxLayout(verticalLayoutWidget_10);
         checkvert->setObjectName(QString::fromUtf8("checkvert"));
         checkvert->setContentsMargins(0, 0, 0, 0);
@@ -430,27 +432,27 @@ public:
         horizontalLayoutWidget_3 = new QWidget(paycheckPage);
         horizontalLayoutWidget_3->setObjectName(QString::fromUtf8("horizontalLayoutWidget_3"));
         horizontalLayoutWidget_3->setGeometry(QRect(200, 10, 361, 31));
-        horizontalLayout_6 = new QHBoxLayout(horizontalLayoutWidget_3);
-        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
-        horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
+        paycheckSearchHorizLayout = new QHBoxLayout(horizontalLayoutWidget_3);
+        paycheckSearchHorizLayout->setObjectName(QString::fromUtf8("paycheckSearchHorizLayout"));
+        paycheckSearchHorizLayout->setContentsMargins(0, 0, 0, 0);
         paycheckSearchLabel = new QLabel(horizontalLayoutWidget_3);
         paycheckSearchLabel->setObjectName(QString::fromUtf8("paycheckSearchLabel"));
 
-        horizontalLayout_6->addWidget(paycheckSearchLabel);
+        paycheckSearchHorizLayout->addWidget(paycheckSearchLabel);
 
         paycheckSearchLine = new QLineEdit(horizontalLayoutWidget_3);
         paycheckSearchLine->setObjectName(QString::fromUtf8("paycheckSearchLine"));
 
-        horizontalLayout_6->addWidget(paycheckSearchLine);
+        paycheckSearchHorizLayout->addWidget(paycheckSearchLine);
 
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+        searchHorizSpacer = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
-        horizontalLayout_6->addItem(horizontalSpacer_2);
+        paycheckSearchHorizLayout->addItem(searchHorizSpacer);
 
         paycheckSearchButton = new QPushButton(horizontalLayoutWidget_3);
         paycheckSearchButton->setObjectName(QString::fromUtf8("paycheckSearchButton"));
 
-        horizontalLayout_6->addWidget(paycheckSearchButton);
+        paycheckSearchHorizLayout->addWidget(paycheckSearchButton);
 
         stackedWidget->addWidget(paycheckPage);
         earningsPage = new QWidget();
@@ -644,6 +646,16 @@ public:
 
         acctvert->addWidget(accountSettings);
 
+        currentPageLabel = new QLabel(centralwidget);
+        currentPageLabel->setObjectName(QString::fromUtf8("currentPageLabel"));
+        currentPageLabel->setGeometry(QRect(10, 10, 91, 16));
+        QFont font;
+        font.setBold(true);
+        font.setWeight(75);
+        currentPageLabel->setFont(font);
+        pageLabel = new QLabel(centralwidget);
+        pageLabel->setObjectName(QString::fromUtf8("pageLabel"));
+        pageLabel->setGeometry(QRect(106, 8, 51, 20));
         finance_page->setCentralWidget(centralwidget);
         menubar = new QMenuBar(finance_page);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -689,8 +701,11 @@ public:
     {
         finance_page->setWindowTitle(QCoreApplication::translate("finance_page", "Finances Page", nullptr));
         dateLabel->setText(QCoreApplication::translate("finance_page", "Date of Purchase", nullptr));
+        dateLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter a date...", nullptr));
         itemLabel->setText(QCoreApplication::translate("finance_page", "Item Name", nullptr));
+        itemLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter an item...", nullptr));
         amountLabel->setText(QCoreApplication::translate("finance_page", "Amount Spent", nullptr));
+        amountLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter price...", nullptr));
         noteLabel->setText(QCoreApplication::translate("finance_page", "Notes", nullptr));
         noteLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter note here...", nullptr));
         submitButton->setText(QCoreApplication::translate("finance_page", "Submit", nullptr));
@@ -700,7 +715,9 @@ public:
         searchLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter an item or date...", nullptr));
         financeSearchButton->setText(QCoreApplication::translate("finance_page", "Search", nullptr));
         pdateLabel->setText(QCoreApplication::translate("finance_page", "Date", nullptr));
+        pdateLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter a date...", nullptr));
         pamountLabel->setText(QCoreApplication::translate("finance_page", "Paycheck Amount", nullptr));
+        pamountLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter paycheck...", nullptr));
         spendLabel->setText(QCoreApplication::translate("finance_page", "Spending %", nullptr));
         savingLabel->setText(QCoreApplication::translate("finance_page", "Saving %", nullptr));
         pnoteLabel->setText(QCoreApplication::translate("finance_page", "Note", nullptr));
@@ -712,8 +729,11 @@ public:
         paycheckSearchLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter a date...", nullptr));
         paycheckSearchButton->setText(QCoreApplication::translate("finance_page", "Search", nullptr));
         edateLabel->setText(QCoreApplication::translate("finance_page", "Date", nullptr));
+        edateLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter a date...", nullptr));
         espendLabel->setText(QCoreApplication::translate("finance_page", "Spending", nullptr));
+        espendLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter spending...", nullptr));
         esaveLabel->setText(QCoreApplication::translate("finance_page", "Saving", nullptr));
+        esaveLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter savings...", nullptr));
         esubmitButton->setText(QCoreApplication::translate("finance_page", "Submit", nullptr));
         earningEditButton->setText(QCoreApplication::translate("finance_page", "Edit", nullptr));
         edeleteButton->setText(QCoreApplication::translate("finance_page", "Delete", nullptr));
@@ -726,6 +746,8 @@ public:
         currSpendingLabel->setText(QCoreApplication::translate("finance_page", "Current Spending: $", nullptr));
         currSavingLabel->setText(QCoreApplication::translate("finance_page", "Current Savings: $", nullptr));
         accountSettings->setText(QCoreApplication::translate("finance_page", "Account Settings", nullptr));
+        currentPageLabel->setText(QCoreApplication::translate("finance_page", "CURRENT PAGE: ", nullptr));
+        pageLabel->setText(QString());
     } // retranslateUi
 
 };

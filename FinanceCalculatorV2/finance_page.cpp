@@ -8,6 +8,7 @@ finance_page::finance_page(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::finance_page) {
     ui->setupUi(this);
+    ui->pageLabel->setText("Purchases");
 
     refreshPurchases();
     refreshPaychecks();
@@ -83,13 +84,14 @@ void finance_page::addToPurchases() {
         if(!query.exec())
             qDebug() << query.lastError();
 
-        QMessageBox::information(this, "Success!", "Purchase added!");
+       // QMessageBox::information(this, "Success!", "Purchase added!");
 
         ui->dateLine->setText("");
         ui->itemLine->setText("");
         ui->amountLine->setText("");
         ui->noteLine->setText("");
         refreshPurchases();
+        refreshEarnings();
     }
 }
 
@@ -97,6 +99,7 @@ void finance_page::addToPurchases() {
  * \brief Sets the index to the purchases window
  */
 void finance_page::goToPurchases() {
+    ui->pageLabel->setText("Purchases");
     ui->stackedWidget->setCurrentIndex(0);
 }
 
@@ -204,6 +207,7 @@ void finance_page::deletePurchases() {
  * \brief Sets the index to the paychecks page
  */
 void finance_page::goToPaychecks() {
+    ui->pageLabel->setText("Paychecks");
     ui->stackedWidget->setCurrentIndex(1);
 }
 
@@ -247,7 +251,7 @@ void finance_page::refreshPaychecks() {
     QSqlRecord record;
     QSqlQueryModel *model = new QSqlQueryModel();
 
-    query.prepare("SELECT * FROM Paychecks ORDER BY Date ASC");
+    query.prepare("SELECT Date, Amount, Note FROM Paychecks ORDER BY Date ASC");
 
     if(!query.exec())
         qDebug() << query.lastError();
@@ -300,11 +304,13 @@ void finance_page::submitPaycheck() {
     else if (saving == 0 && spending == 0)
         QMessageBox::warning(this, "", "Please enter an percentage!");
     else {
-        query.prepare("INSERT OR IGNORE INTO Paychecks(Date, Amount, Note) "
-                      "VALUES(:date, :amount, :note);");
+        query.prepare("INSERT OR IGNORE INTO Paychecks(Date, Amount, Note, SpendPct, SavePct) "
+                      "VALUES(:date, :amount, :note, :spending, :saving);");
         query.bindValue(":date", date);
         query.bindValue(":amount", amount);
         query.bindValue(":note", note);
+        query.bindValue(":spending", spending);
+        query.bindValue(":saving", saving);
 
         if(!query.exec())
             qDebug() << query.lastError();
@@ -318,8 +324,6 @@ void finance_page::submitPaycheck() {
 
         if(!earnings.exec())
             qDebug() << earnings.lastError();
-
-        QMessageBox::information(this, "Success!", "Purchase added!");
 
         ui->pdateLine->setText("");
         ui->pamountLine->setText("");
@@ -417,6 +421,7 @@ void finance_page::refreshEarnings() {
  * \brief Goes to the index for earnings
  */
 void finance_page::goToEarnings() {
+    ui->pageLabel->setText("Earnings");
     ui->stackedWidget->setCurrentIndex(2);
     refreshEarningsPage();
 }
@@ -510,7 +515,7 @@ void finance_page::deleteEarning() {
     QString spent = ui->espendLine->text();
     QString saved = ui->esaveLine->text();
 
-
+    qDebug() << spent + " SAVED " + saved;
 
     query.prepare("DELETE FROM Earnings WHERE Date = '" + date + "' AND Spending LIKE '%" + spent + "%' AND Saving LIKE '%" + saved + "%'");
 

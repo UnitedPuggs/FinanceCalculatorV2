@@ -54,8 +54,8 @@
        <rect>
         <x>20</x>
         <y>40</y>
-        <width>151</width>
-        <height>321</height>
+        <width>161</width>
+        <height>411</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="infovert">
@@ -91,6 +91,9 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="placeholderText">
+            <string>Enter a date...</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -115,6 +118,9 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="placeholderText">
+            <string>Enter an item...</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -135,6 +141,9 @@
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="placeholderText">
+            <string>Enter price...</string>
            </property>
           </widget>
          </item>
@@ -294,7 +303,7 @@
      <widget class="QWidget" name="verticalLayoutWidget_10">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>30</x>
         <y>40</y>
         <width>151</width>
         <height>345</height>
@@ -318,6 +327,9 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="placeholderText">
+            <string>Enter a date...</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -338,6 +350,9 @@
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="placeholderText">
+            <string>Enter paycheck...</string>
            </property>
           </widget>
          </item>
@@ -447,7 +462,7 @@
         <height>31</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <layout class="QHBoxLayout" name="paycheckSearchHorizLayout">
        <item>
         <widget class="QLabel" name="paycheckSearchLabel">
          <property name="text">
@@ -463,7 +478,7 @@
         </widget>
        </item>
        <item>
-        <spacer name="horizontalSpacer_2">
+        <spacer name="searchHorizSpacer">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -526,6 +541,9 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="placeholderText">
+            <string>Enter a date...</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -547,6 +565,9 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="placeholderText">
+            <string>Enter spending...</string>
+           </property>
           </widget>
          </item>
         </layout>
@@ -567,6 +588,9 @@
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
+           </property>
+           <property name="placeholderText">
+            <string>Enter savings...</string>
            </property>
           </widget>
          </item>
@@ -788,6 +812,38 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="currentPageLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>CURRENT PAGE: </string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="pageLabel">
+    <property name="geometry">
+     <rect>
+      <x>106</x>
+      <y>8</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
