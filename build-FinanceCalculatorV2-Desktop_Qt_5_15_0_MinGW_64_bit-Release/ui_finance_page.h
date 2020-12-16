@@ -159,7 +159,7 @@ public:
         financeTable->setGeometry(QRect(200, 40, 601, 431));
         verticalLayoutWidget = new QWidget(financePage);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(20, 40, 161, 411));
+        verticalLayoutWidget->setGeometry(QRect(20, 40, 161, 401));
         infovert = new QVBoxLayout(verticalLayoutWidget);
         infovert->setObjectName(QString::fromUtf8("infovert"));
         infovert->setContentsMargins(0, 0, 0, 0);

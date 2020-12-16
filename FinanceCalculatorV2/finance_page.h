@@ -37,6 +37,7 @@ private slots:
 
     void editEarning();
     void earningsClicked(const QModelIndex &index);
+    bool checkForZero(const QModelIndex &index);
     void submitEarning();
     void deleteEarning();
     void goToEarnings();

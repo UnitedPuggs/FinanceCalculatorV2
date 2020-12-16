@@ -55,7 +55,7 @@
         <x>20</x>
         <y>40</y>
         <width>161</width>
-        <height>411</height>
+        <height>401</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="infovert">

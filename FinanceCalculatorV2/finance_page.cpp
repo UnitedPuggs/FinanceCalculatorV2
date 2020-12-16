@@ -4,16 +4,24 @@
 #include <QRegExp>
 #include <QRegExpValidator>
 
+/*!
+ * \brief Sets up the finance page whenever the object is created
+ * \param parent
+ */
 finance_page::finance_page(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::finance_page) {
     ui->setupUi(this);
+
+    //Default page, so make sure label is set to this
     ui->pageLabel->setText("Purchases");
 
+    //Calls these functions to ensure everything is nice and updated
     refreshPurchases();
     refreshPaychecks();
     refreshEarningsPage();
 
+    //Regex that needs to be fixed
     ui->dateLine->setValidator(new QRegExpValidator(QRegExp("([1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d")));
     ui->pdateLine->setValidator(new QRegExpValidator(QRegExp("([1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d")));
     ui->edateLine->setValidator(new QRegExpValidator(QRegExp("([1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d")));
@@ -26,6 +34,13 @@ finance_page::finance_page(QWidget *parent) :
 finance_page::~finance_page()
 {
     delete ui;
+}
+
+/*!
+ * \brief Lets the user adjust their account settings
+ */
+void finance_page::accountSettings() {
+
 }
 
 
@@ -212,13 +227,6 @@ void finance_page::goToPaychecks() {
 }
 
 /*!
- * \brief Lets the user adjust their account settings
- */
-void finance_page::accountSettings() {
-
-}
-
-/*!
  * \brief Searches the paychecks homie
  */
 void finance_page::searchPaychecks() {
@@ -360,7 +368,8 @@ void finance_page::editPaycheck() {
     ui->pdateLine->setText("");
     ui->pamountLine->setText("");
     ui->noteEdit->setText("");
-
+    //use update shit to update earnings whoops
+    editEarning();
     refreshPaychecks();
     refreshEarnings();
 }
@@ -385,12 +394,14 @@ void finance_page::deletePaycheck() {
     ui->pdateLine->setText("");
     ui->pamountLine->setText("");
     ui->noteEdit->setText("");
-    refreshPaychecks();
+
     refreshEarnings();
+    refreshPaychecks();
 }
 
 /*!
  * \brief Does the math for what the user's actual spending is after purchases
+ * ***** LOOK AT THIS FOR LOGIC TO CUT INTO SPENDING *****
  */
 void finance_page::refreshEarnings() {
     QSqlQuery query, query1, temp;
@@ -399,19 +410,22 @@ void finance_page::refreshEarnings() {
 
     while(query.next())
         spending = query.value(0).toDouble();
-
+    if(!query.exec())
+        qDebug() << query.lastError();
+    
     query1.exec("SELECT Sum(Earnings.Saving) FROM Earnings");
-
+    if(!query1.exec())
+        qDebug() << query1.lastError();
     while (query1.next())
         saving = query1.value(0).toDouble();
-
-
+    
     if (spending == 0)
-        temp.exec("SELECT Sum(Earnings.Spending) FROM EARNINGS");
-
+        temp.exec("SELECT Sum(Earnings.Spending) FROM Earnings");
+    if(!temp.exec())
+        qDebug() << temp.lastError();
     while(temp.next())
         spending = temp.value(0).toDouble();
-
+    
 
     ui->spendingLine->setText(QString::number(spending, 'f', 2));
     ui->savingsLine->setText(QString::number(saving, 'f', 2));
@@ -522,11 +536,17 @@ void finance_page::deleteEarning() {
     if(!query.exec())
         qDebug() << query.lastError();
 
+    actuallydelete.prepare("DELETE FROM Paychecks WHERE Date = '" + date + "'");
+
+    if(!actuallydelete.exec())
+        qDebug() << actuallydelete.lastError();
+
     ui->edateLine->setText("");
     ui->espendLine->setText("");
     ui->esaveLine->setText("");
     refreshEarningsPage();
     refreshEarnings();
+    refreshPaychecks();
 }
 
 /*!
@@ -544,13 +564,41 @@ void finance_page::earningsClicked(const QModelIndex &index) {
 
     else {
         while(query.next()) {
-            ui->edateLine->setText(query.value(0).toString());
-            ui->espendLine->setText(QString::number(query.value(1).toDouble(), 'f', 1));
-            ui->esaveLine->setText(QString::number(query.value(2).toDouble(), 'f', 1));
+            if(!checkForZero(index)) {
+                ui->edateLine->setText(query.value(0).toString());
+                ui->espendLine->setText(QString::number(query.value(1).toDouble(), 'f', 1));
+                ui->esaveLine->setText(QString::number(query.value(2).toDouble(), 'f', 1));
+            } else if (checkForZero(index)){
+                ui->edateLine->setText(query.value(0).toString());
+                ui->espendLine->setText(QString::number(query.value(1).toDouble(), 'f', 0));
+                ui->esaveLine->setText(QString::number(query.value(2).toDouble(), 'f', 0));
+            }
         }
     }
 }
 
+
+bool finance_page::checkForZero(const QModelIndex &index) {
+    QSqlQuery query;
+    QString val = ui->earningsTable->model()->data(index).toString();
+
+    query.prepare("SELECT * FROM Earnings WHERE Date = '" + val + "';");
+
+    if(!query.exec())
+        qDebug() << query.lastError();
+
+    else {
+        while(query.next()) {
+            QString spendStr = QVariant(QString::number(query.value(1).toDouble(), 'f', 1)).toString();
+            for(int i = 0; i < spendStr.size()-1; ++i) {
+                if(spendStr[i] == '.')
+                    if(spendStr[i+1] == '0')
+                        return true;
+            }
+        }
+    }
+    return false;
+}
 /*!
  * \brief Confusing, but this updates the tableview with info from the db
  */
@@ -577,7 +625,7 @@ void finance_page::refreshEarningsPage() {
 }
 
 /*!
- * \brief Fucking guess
+ * \brief Fucking guess what this does
  */
 void finance_page::searchEarnings() {
     QSqlQuery query;
