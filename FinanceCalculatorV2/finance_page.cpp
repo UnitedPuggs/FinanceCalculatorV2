@@ -3,6 +3,7 @@
 #include "header.h"
 #include <QRegExp>
 #include <QRegExpValidator>
+#include "login_screen.h"
 
 /*!
  * \brief Sets up the finance page whenever the object is created
@@ -12,6 +13,7 @@ finance_page::finance_page(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::finance_page) {
     ui->setupUi(this);
+
 
     //Default page, so make sure label is set to this
     ui->pageLabel->setText("Purchases");
@@ -346,7 +348,7 @@ void finance_page::submitPaycheck() {
  * \brief Lets the user change their paycheck
  */
 void finance_page::editPaycheck() {
-    QSqlQuery query;
+    QSqlQuery query, earningQuery;
 
     QString date = ui->pdateLine->text();
     QString spent = ui->pamountLine->text();
@@ -369,9 +371,10 @@ void finance_page::editPaycheck() {
     ui->pamountLine->setText("");
     ui->noteEdit->setText("");
     //use update shit to update earnings whoops
-    editEarning();
+    //I think I wrote most of these comments while high, so to clarify, use the update functionality to actually update earnings
+    //maybe create a helper function that updates earnings in relation to paychecks?
     refreshPaychecks();
-    refreshEarnings();
+    //refreshEarnings(); //this does do the update shit homie
 }
 
 /*!
@@ -401,7 +404,7 @@ void finance_page::deletePaycheck() {
 
 /*!
  * \brief Does the math for what the user's actual spending is after purchases
- * ***** LOOK AT THIS FOR LOGIC TO CUT INTO SPENDING *****
+ * ***** LOOK AT THIS FOR LOGIC TO CUT INTO SPENDING ***** <------ come on, retard
  */
 void finance_page::refreshEarnings() {
     QSqlQuery query, query1, temp;
@@ -510,7 +513,7 @@ void finance_page::submitEarning() {
         if(!query.exec())
             qDebug() << query.lastError();
 
-        QMessageBox::information(this, "Success!", "Purchase added!");
+        //QMessageBox::information(this, "Success!", "Purchase added!"); definitely not needed
 
         ui->edateLine->setText("");
         ui->espendLine->setText("");

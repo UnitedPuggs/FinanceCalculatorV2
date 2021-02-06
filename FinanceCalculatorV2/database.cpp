@@ -26,6 +26,7 @@ void database::createDatabase() {
                "SavePct  DECIMAL (4, 2) NOT NULL);");
 
     query.exec("CREATE TABLE Details("
+               "Activated INTEGER,"
                "Username VARCHAR(50),"
                "Password TEXT,"
                "Bonk     TEXT,"
