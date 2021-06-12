@@ -36,6 +36,8 @@ private slots:
     void paychecksClicked(const QModelIndex &index);
 
     void editEarning();
+    void spendingAmount();
+    void savingAmount();
     void earningsClicked(const QModelIndex &index);
     bool checkForZero(const QModelIndex &index);
     void submitEarning();

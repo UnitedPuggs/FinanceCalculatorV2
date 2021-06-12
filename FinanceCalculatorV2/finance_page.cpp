@@ -354,6 +354,10 @@ void finance_page::editPaycheck() {
     QString spent = ui->pamountLine->text();
     QString note = ui->noteEdit->toPlainText();
 
+    double amount = ui->pamountLine->text().toDouble();
+    double spending = ui->spendingPercent->value();
+    double saving = ui->savingPercent->value();
+
     query.prepare("UPDATE Paychecks "
                   "SET Date = :date, "
                   "    Amount = :spent, "
@@ -367,9 +371,24 @@ void finance_page::editPaycheck() {
     if(!query.exec())
         qDebug() << query.lastError();
 
+
+
     ui->pdateLine->setText("");
     ui->pamountLine->setText("");
     ui->noteEdit->setText("");
+
+    earningQuery.prepare("UPDATE Earnings "
+                         "SET Date = :date,"
+                         "    Spending = :spending, "
+                         "    Saving = :saving "
+                         "WHERE Date = :date");
+
+    earningQuery.bindValue(":date", date);
+    earningQuery.bindValue(":spending", amount * (spending / 100));
+    earningQuery.bindValue(":saving", amount * (saving / 100));
+
+    if(!earningQuery.exec())
+        qDebug() << earningQuery.lastError();
     //use update shit to update earnings whoops
     //I think I wrote most of these comments while high, so to clarify, use the update functionality to actually update earnings
     //maybe create a helper function that updates earnings in relation to paychecks?
@@ -397,6 +416,8 @@ void finance_page::deletePaycheck() {
     ui->pdateLine->setText("");
     ui->pamountLine->setText("");
     ui->noteEdit->setText("");
+    ui->spendingPercent->setValue(0.00);
+    ui->savingPercent->setValue(0.00);
 
     refreshEarnings();
     refreshPaychecks();
@@ -461,6 +482,8 @@ void finance_page::paychecksClicked(const QModelIndex &index) {
             ui->pdateLine->setText(query.value(0).toString());
             ui->pamountLine->setText(query.value(1).toString());
             ui->noteEdit->setText(query.value(2).toString());
+            ui->spendingPercent->setValue(query.value(3).toDouble());
+            ui->savingPercent->setValue(query.value(4).toDouble());
         }
     }
 }
@@ -476,7 +499,6 @@ void finance_page::editEarning() {
     QString saved = ui->esaveLine->text();
 
     query.prepare("UPDATE Earnings SET Date = '" + date + "', Spending = " + spent + ", Saving = " + saved + " WHERE Date = '" + date + "'");
-
     if(!query.exec())
         qDebug() << query.lastError();
 
@@ -488,6 +510,33 @@ void finance_page::editEarning() {
     refreshEarnings();
 }
 
+void finance_page::spendingAmount() {
+    QSqlQuery query;
+    double total;
+    QString date = ui->edateLine->text();
+    query.prepare("SELECT Amount FROM Paychecks WHERE Date = '" + date + "'");
+    if(!query.exec())
+        qDebug() << query.lastError();
+    while(query.next())
+        total = query.value(0).toDouble();
+
+    double spend = ui->espendLine->text().toDouble();
+    ui->esaveLine->setText(QString::number(qFabs(total - spend)));
+}
+
+void finance_page::savingAmount() {
+    QSqlQuery query;
+    double total;
+    QString date = ui->edateLine->text();
+    query.prepare("SELECT Amount FROM Paychecks WHERE Date = '" + date + "'");
+    if(!query.exec())
+        qDebug() << query.lastError();
+    while(query.next())
+        total = query.value(0).toDouble();
+
+    double save = ui->esaveLine->text().toDouble();
+    ui->espendLine->setText(QString::number(qFabs(total - save)));
+}
 /*!
  * \brief Function lets you submit an earning
  */
@@ -532,7 +581,7 @@ void finance_page::deleteEarning() {
     QString spent = ui->espendLine->text();
     QString saved = ui->esaveLine->text();
 
-    qDebug() << spent + " SAVED " + saved;
+   // qDebug() << spent + " SAVED " + saved;
 
     query.prepare("DELETE FROM Earnings WHERE Date = '" + date + "' AND Spending LIKE '%" + spent + "%' AND Saving LIKE '%" + saved + "%'");
 
@@ -579,7 +628,6 @@ void finance_page::earningsClicked(const QModelIndex &index) {
         }
     }
 }
-
 
 bool finance_page::checkForZero(const QModelIndex &index) {
     QSqlQuery query;

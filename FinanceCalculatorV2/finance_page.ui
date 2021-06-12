@@ -55,7 +55,7 @@
         <x>20</x>
         <y>40</y>
         <width>161</width>
-        <height>401</height>
+        <height>431</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="infovert">
@@ -306,7 +306,7 @@
         <x>30</x>
         <y>40</y>
         <width>151</width>
-        <height>345</height>
+        <height>375</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="checkvert">
@@ -520,7 +520,7 @@
         <x>20</x>
         <y>40</y>
         <width>160</width>
-        <height>252</height>
+        <height>256</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="earningvert">
@@ -684,7 +684,7 @@
      <rect>
       <x>50</x>
       <y>90</y>
-      <width>82</width>
+      <width>95</width>
       <height>121</height>
      </rect>
     </property>
@@ -799,7 +799,7 @@
      <rect>
       <x>40</x>
       <y>460</y>
-      <width>101</width>
+      <width>106</width>
       <height>31</height>
      </rect>
     </property>
@@ -852,7 +852,7 @@
      <x>0</x>
      <y>0</y>
      <width>1198</width>
-     <height>20</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
@@ -867,8 +867,8 @@
    <slot>searchPurchases()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>550</x>
-     <y>98</y>
+     <x>689</x>
+     <y>114</y>
     </hint>
     <hint type="destinationlabel">
      <x>360</x>
@@ -915,8 +915,8 @@
    <slot>accountSettings()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>95</x>
-     <y>525</y>
+     <x>96</x>
+     <y>514</y>
     </hint>
     <hint type="destinationlabel">
      <x>93</x>
@@ -963,8 +963,8 @@
    <slot>addToPurchases()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>245</x>
-     <y>368</y>
+     <x>279</x>
+     <y>476</y>
     </hint>
     <hint type="destinationlabel">
      <x>71</x>
@@ -979,8 +979,8 @@
    <slot>editPurchases()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>260</x>
-     <y>402</y>
+     <x>286</x>
+     <y>510</y>
     </hint>
     <hint type="destinationlabel">
      <x>79</x>
@@ -995,8 +995,8 @@
    <slot>deletePurchases()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>271</x>
-     <y>430</y>
+     <x>286</x>
+     <y>544</y>
     </hint>
     <hint type="destinationlabel">
      <x>67</x>
@@ -1043,8 +1043,8 @@
    <slot>searchPaychecks()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>604</x>
-     <y>90</y>
+     <x>699</x>
+     <y>114</y>
     </hint>
     <hint type="destinationlabel">
      <x>544</x>
@@ -1075,8 +1075,8 @@
    <slot>spendPercent()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>202</x>
-     <y>292</y>
+     <x>206</x>
+     <y>265</y>
     </hint>
     <hint type="destinationlabel">
      <x>115</x>
@@ -1091,8 +1091,8 @@
    <slot>savePercent()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>267</x>
-     <y>285</y>
+     <x>316</x>
+     <y>265</y>
     </hint>
     <hint type="destinationlabel">
      <x>108</x>
@@ -1107,8 +1107,8 @@
    <slot>submitPaycheck()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>228</x>
-     <y>443</y>
+     <x>257</x>
+     <y>418</y>
     </hint>
     <hint type="destinationlabel">
      <x>78</x>
@@ -1123,8 +1123,8 @@
    <slot>editPaycheck()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>218</x>
-     <y>480</y>
+     <x>247</x>
+     <y>452</y>
     </hint>
     <hint type="destinationlabel">
      <x>61</x>
@@ -1139,8 +1139,8 @@
    <slot>deletePaycheck()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>239</x>
-     <y>503</y>
+     <x>268</x>
+     <y>486</y>
     </hint>
     <hint type="destinationlabel">
      <x>120</x>
@@ -1171,8 +1171,8 @@
    <slot>goToEarnings()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>72</x>
-     <y>196</y>
+     <x>73</x>
+     <y>227</y>
     </hint>
     <hint type="destinationlabel">
      <x>21</x>
@@ -1203,8 +1203,8 @@
    <slot>searchEarnings()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>581</x>
-     <y>92</y>
+     <x>699</x>
+     <y>114</y>
     </hint>
     <hint type="destinationlabel">
      <x>536</x>
@@ -1292,6 +1292,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>esaveLine</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>finance_page</receiver>
+   <slot>savingAmount()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>201</x>
+     <y>259</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>95</x>
+     <y>268</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>espendLine</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>finance_page</receiver>
+   <slot>spendingAmount()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>250</x>
+     <y>201</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>96</x>
+     <y>325</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>searchPurchases()</slot>
@@ -1318,5 +1350,7 @@
   <slot>editEarning()</slot>
   <slot>deleteEarning()</slot>
   <slot>earningsClicked(QModelIndex)</slot>
+  <slot>savingAmount()</slot>
+  <slot>spendingAmount()</slot>
  </slots>
 </ui>
