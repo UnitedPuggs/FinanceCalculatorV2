@@ -361,12 +361,16 @@ void finance_page::editPaycheck() {
     query.prepare("UPDATE Paychecks "
                   "SET Date = :date, "
                   "    Amount = :spent, "
-                  "    Note = :note "
+                  "    Note = :note, "
+                  "    SpendPct = :spending,"
+                  "    SavePct = :saving "
                   "WHERE Date = :date");
 
     query.bindValue(":date", date);
     query.bindValue(":spent", spent);
     query.bindValue(":note", note);
+    query.bindValue(":spending", spending);
+    query.bindValue(":saving", saving);
 
     if(!query.exec())
         qDebug() << query.lastError();
@@ -514,13 +518,20 @@ void finance_page::spendingAmount() {
     QSqlQuery query;
     double total;
     QString date = ui->edateLine->text();
-    query.prepare("SELECT Amount FROM Paychecks WHERE Date = '" + date + "'");
+    query.prepare("SELECT Amount FROM Paychecks WHERE Date = '" + date + "';");
     if(!query.exec())
         qDebug() << query.lastError();
     while(query.next())
         total = query.value(0).toDouble();
 
+
     double spend = ui->espendLine->text().toDouble();
+    double spendpct = (spend/total) * 100, savepct = (qFabs(total - spend) / total) * 100;
+
+    query.prepare("UPDATE Paychecks SET SpendPct = '" + QString::number(spendpct) + "', SavePct = '" + QString::number(savepct) + "' "
+                  "WHERE Date = '" + date + "';");
+    if(!query.exec())
+        qDebug() << query.lastError();
     ui->esaveLine->setText(QString::number(qFabs(total - spend)));
 }
 
