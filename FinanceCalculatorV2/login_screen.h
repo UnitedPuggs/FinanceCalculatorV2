@@ -2,6 +2,7 @@
 #define LOGIN_SCREEN_H
 
 #include <QMainWindow>
+#include "header.h"
 #include "finance_page.h"
 
 QT_BEGIN_NAMESPACE
@@ -19,6 +20,8 @@ public:
 private slots:
     void login();
 private:
+    void a();
+    bool o(QString, QString);
     Ui::login_screen *ui;
     finance_page *finance;
 };

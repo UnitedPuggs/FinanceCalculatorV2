@@ -3,16 +3,27 @@
 #include "header.h"
 #include <QRegExp>
 #include <QRegExpValidator>
+#include "login_screen.h"
 
+/*!
+ * \brief Sets up the finance page whenever the object is created
+ * \param parent
+ */
 finance_page::finance_page(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::finance_page) {
     ui->setupUi(this);
 
+
+    //Default page, so make sure label is set to this
+    ui->pageLabel->setText("Purchases");
+
+    //Calls these functions to ensure everything is nice and updated
     refreshPurchases();
     refreshPaychecks();
     refreshEarningsPage();
 
+    //Regex that needs to be fixed
     ui->dateLine->setValidator(new QRegExpValidator(QRegExp("([1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d")));
     ui->pdateLine->setValidator(new QRegExpValidator(QRegExp("([1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d")));
     ui->edateLine->setValidator(new QRegExpValidator(QRegExp("([1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d")));
@@ -27,15 +38,24 @@ finance_page::~finance_page()
     delete ui;
 }
 
+/*!
+ * \brief Lets the user adjust their account settings
+ */
+void finance_page::accountSettings() {
+
+}
 
 
+/*!
+ * \brief Function for searching through purchases
+ */
 void finance_page::searchPurchases() {
     QSqlQuery query;
     QSqlRecord record;
     QSqlQueryModel *model = new QSqlQueryModel();
     QString search = ui->searchLine->text();
 
-    query.prepare("SELECT * FROM Purchases WHERE Date LIKE '%" + search + "%' OR Item LIKE '%" + search + "%'");
+    query.prepare("SELECT * FROM Purchases WHERE NOT Date = '4/20/69' AND Date LIKE '%" + search + "%' OR Item LIKE '%" + search + "%'");
 
     if(!query.exec())
         qDebug() << query.lastError();
@@ -52,6 +72,9 @@ void finance_page::searchPurchases() {
 
 }
 
+/*!
+ * \brief Function that actually lets you add a purchase
+ */
 void finance_page::addToPurchases() {
     QSqlQuery query;
 
@@ -78,26 +101,34 @@ void finance_page::addToPurchases() {
         if(!query.exec())
             qDebug() << query.lastError();
 
-        QMessageBox::information(this, "Success!", "Purchase added!");
+       // QMessageBox::information(this, "Success!", "Purchase added!");
 
         ui->dateLine->setText("");
         ui->itemLine->setText("");
         ui->amountLine->setText("");
         ui->noteLine->setText("");
         refreshPurchases();
+        refreshEarnings();
     }
 }
 
+/*!
+ * \brief Sets the index to the purchases window
+ */
 void finance_page::goToPurchases() {
+    ui->pageLabel->setText("Purchases");
     ui->stackedWidget->setCurrentIndex(0);
 }
 
+/*!
+ * \brief Updates the tableview to pull from the purchases table
+ */
 void finance_page::refreshPurchases() {
     QSqlQuery query;
     QSqlRecord record;
     QSqlQueryModel *model = new QSqlQueryModel();
 
-    query.prepare("SELECT * FROM Purchases ORDER BY Date ASC");
+    query.prepare("SELECT * FROM Purchases WHERE NOT Date = '4/20/69' ORDER BY Date ASC");
 
     if(!query.exec())
         qDebug() << query.lastError();
@@ -115,7 +146,9 @@ void finance_page::refreshPurchases() {
     refreshEarnings();
 }
 
-
+/*!
+ * \brief Sets the purchases shit to the lineedits
+ */
 void finance_page::contentClicked(const QModelIndex &index) {
     QSqlQuery query;
     QString val = ui->financeTable->model()->data(index).toString();
@@ -135,6 +168,9 @@ void finance_page::contentClicked(const QModelIndex &index) {
     }
 }
 
+/*!
+ * \brief Updates the purchases table to match whatever the fuck the user inputs
+ */
 void finance_page::editPurchases() {
     QSqlQuery query;
 
@@ -165,6 +201,9 @@ void finance_page::editPurchases() {
     refreshPurchases();
 }
 
+/*!
+ * \brief Pretty obvious that the purchases get deleted
+ */
 void finance_page::deletePurchases() {
     QSqlQuery query;
     QString date = ui->dateLine->text();
@@ -181,14 +220,17 @@ void finance_page::deletePurchases() {
     refreshPurchases();
 }
 
+/*!
+ * \brief Sets the index to the paychecks page
+ */
 void finance_page::goToPaychecks() {
+    ui->pageLabel->setText("Paychecks");
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-void finance_page::accountSettings() {
-
-}
-
+/*!
+ * \brief Searches the paychecks homie
+ */
 void finance_page::searchPaychecks() {
     QSqlQuery query;
     QSqlRecord record;
@@ -211,12 +253,15 @@ void finance_page::searchPaychecks() {
 
 }
 
+/*!
+ * \brief Refreshes the tableview for the paychecks
+ */
 void finance_page::refreshPaychecks() {
     QSqlQuery query;
     QSqlRecord record;
     QSqlQueryModel *model = new QSqlQueryModel();
 
-    query.prepare("SELECT * FROM Paychecks ORDER BY Date ASC");
+    query.prepare("SELECT Date, Amount, Note FROM Paychecks ORDER BY Date ASC");
 
     if(!query.exec())
         qDebug() << query.lastError();
@@ -233,16 +278,25 @@ void finance_page::refreshPaychecks() {
     refreshEarnings();
 }
 
+/*!
+ * \brief Does the math for the saving percent, to even it out
+ */
 void finance_page::spendPercent() {
     double spendingPercent = ui->spendingPercent->value();
     ui->savingPercent->setValue(qFabs(spendingPercent-100));
 }
 
+/*!
+ * \brief Does the math for the spending percent, to even it out
+ */
 void finance_page::savePercent() {
     double savingPercent = ui->savingPercent->value();
     ui->spendingPercent->setValue(qFabs(savingPercent-100));
 }
 
+/*!
+ * \brief Lets the user actually submit their paycheck
+ */
 void finance_page::submitPaycheck() {
     QSqlQuery query, earnings;
 
@@ -260,11 +314,13 @@ void finance_page::submitPaycheck() {
     else if (saving == 0 && spending == 0)
         QMessageBox::warning(this, "", "Please enter an percentage!");
     else {
-        query.prepare("INSERT OR IGNORE INTO Paychecks(Date, Amount, Note) "
-                      "VALUES(:date, :amount, :note);");
+        query.prepare("INSERT OR IGNORE INTO Paychecks(Date, Amount, Note, SpendPct, SavePct) "
+                      "VALUES(:date, :amount, :note, :spending, :saving);");
         query.bindValue(":date", date);
         query.bindValue(":amount", amount);
         query.bindValue(":note", note);
+        query.bindValue(":spending", spending);
+        query.bindValue(":saving", saving);
 
         if(!query.exec())
             qDebug() << query.lastError();
@@ -279,8 +335,6 @@ void finance_page::submitPaycheck() {
         if(!earnings.exec())
             qDebug() << earnings.lastError();
 
-        QMessageBox::information(this, "Success!", "Purchase added!");
-
         ui->pdateLine->setText("");
         ui->pamountLine->setText("");
         ui->noteEdit->setText("");
@@ -290,33 +344,63 @@ void finance_page::submitPaycheck() {
     }
 }
 
+/*!
+ * \brief Lets the user change their paycheck
+ */
 void finance_page::editPaycheck() {
-    QSqlQuery query;
+    QSqlQuery query, earningQuery;
 
     QString date = ui->pdateLine->text();
     QString spent = ui->pamountLine->text();
     QString note = ui->noteEdit->toPlainText();
 
+    double amount = ui->pamountLine->text().toDouble();
+    double spending = ui->spendingPercent->value();
+    double saving = ui->savingPercent->value();
+
     query.prepare("UPDATE Paychecks "
                   "SET Date = :date, "
                   "    Amount = :spent, "
-                  "    Note = :note "
+                  "    Note = :note, "
+                  "    SpendPct = :spending,"
+                  "    SavePct = :saving "
                   "WHERE Date = :date");
 
     query.bindValue(":date", date);
     query.bindValue(":spent", spent);
     query.bindValue(":note", note);
+    query.bindValue(":spending", spending);
+    query.bindValue(":saving", saving);
 
     if(!query.exec())
         qDebug() << query.lastError();
 
+
+
     ui->pdateLine->setText("");
     ui->pamountLine->setText("");
     ui->noteEdit->setText("");
+
+    earningQuery.prepare("UPDATE Earnings "
+                         "SET Date = :date,"
+                         "    Spending = :spending, "
+                         "    Saving = :saving "
+                         "WHERE Date = :date");
+
+    earningQuery.bindValue(":date", date);
+    earningQuery.bindValue(":spending", amount * (spending / 100));
+    earningQuery.bindValue(":saving", amount * (saving / 100));
+
+    if(!earningQuery.exec())
+        qDebug() << earningQuery.lastError();
     refreshPaychecks();
-    refreshEarnings();
+    //refreshEarnings(); //this does do the update shit homie
+    //^^ I have no idea what this comment means anymore, but I'll leave it cuz it works I guess?
 }
 
+/*!
+ * \brief Lets the user delete a paycheck
+ */
 void finance_page::deletePaycheck() {
     QSqlQuery query, earnings;
     QString date = ui->pdateLine->text();
@@ -334,40 +418,67 @@ void finance_page::deletePaycheck() {
     ui->pdateLine->setText("");
     ui->pamountLine->setText("");
     ui->noteEdit->setText("");
-    refreshPaychecks();
+    ui->spendingPercent->setValue(0.00);
+    ui->savingPercent->setValue(0.00);
+
     refreshEarnings();
+    refreshPaychecks();
 }
 
+/*!
+ * \brief Does the math for what the user's actual spending is after purchases
+ * ***** LOOK AT THIS FOR LOGIC TO CUT INTO SPENDING ***** <------ come on, retard
+ */
 void finance_page::refreshEarnings() {
     QSqlQuery query, query1, temp;
-    double spending, saving;
-    query.exec("SELECT ((SELECT Sum(Earnings.Spending) FROM Earnings) - (SELECT Sum(Purchases.Spent) FROM Purchases))");
+    double spending = 0, saving = 0;
+    query.prepare("SELECT ((SELECT Sum(Earnings.Spending) FROM Earnings) - (SELECT Sum(Purchases.Spent) FROM Purchases))");
+    //if there are no purchases then it returns null
 
+    if(!query.exec())
+          qDebug() << query.lastError();
     while(query.next())
         spending = query.value(0).toDouble();
 
-    query1.exec("SELECT Sum(Earnings.Saving) FROM Earnings");
 
+
+    query1.prepare("SELECT Sum(Earnings.Saving) FROM Earnings");
+    if(!query1.exec())
+        qDebug() << query1.lastError();
     while (query1.next())
         saving = query1.value(0).toDouble();
+    
+    //if (spending == 0)
+      //  temp.exec("SELECT Sum(Earnings.Spending) FROM Earnings");
+    //if(!temp.exec())
+      //  qDebug() << temp.lastError();
+    //while(temp.next())
+      //  spending = temp.value(0).toDouble();
 
-
-    if (spending == 0)
-        temp.exec("SELECT Sum(Earnings.Spending) FROM EARNINGS");
-
-    while(temp.next())
-        spending = temp.value(0).toDouble();
-
-
-    ui->spendingLine->setText(QString::number(spending, 'f', 2));
-    ui->savingsLine->setText(QString::number(saving, 'f', 2));
+    //this shit is so scuffed lmaoo, but hey it's kinda big brain I think
+    if(spending < 0) {
+        ui->spendingLine->setText("0");
+        saving += spending;
+        ui->savingsLine->setText(QString::number(saving, 'f', 2));
+    } else {
+        ui->spendingLine->setText(QString::number(spending, 'f', 2));
+        ui->savingsLine->setText(QString::number(saving, 'f', 2));
+    }
 }
 
+/*!
+ * \brief Goes to the index for earnings
+ */
 void finance_page::goToEarnings() {
+    ui->pageLabel->setText("Earnings");
     ui->stackedWidget->setCurrentIndex(2);
     refreshEarningsPage();
 }
 
+/*!
+ * \brief Selects shit from paychecks whenever you click date
+ * \param index
+ */
 void finance_page::paychecksClicked(const QModelIndex &index) {
     QSqlQuery query;
     QString val = ui->paycheckTable->model()->data(index).toString();
@@ -382,10 +493,15 @@ void finance_page::paychecksClicked(const QModelIndex &index) {
             ui->pdateLine->setText(query.value(0).toString());
             ui->pamountLine->setText(query.value(1).toString());
             ui->noteEdit->setText(query.value(2).toString());
+            ui->spendingPercent->setValue(query.value(3).toDouble());
+            ui->savingPercent->setValue(query.value(4).toDouble());
         }
     }
 }
 
+/*!
+ * \brief Function for editing earnings obviously
+ */
 void finance_page::editEarning() {
     QSqlQuery query;
 
@@ -394,7 +510,6 @@ void finance_page::editEarning() {
     QString saved = ui->esaveLine->text();
 
     query.prepare("UPDATE Earnings SET Date = '" + date + "', Spending = " + spent + ", Saving = " + saved + " WHERE Date = '" + date + "'");
-
     if(!query.exec())
         qDebug() << query.lastError();
 
@@ -406,6 +521,43 @@ void finance_page::editEarning() {
     refreshEarnings();
 }
 
+void finance_page::spendingAmount() {
+    QSqlQuery query;
+    double total;
+    QString date = ui->edateLine->text();
+    query.prepare("SELECT Amount FROM Paychecks WHERE Date = '" + date + "';");
+    if(!query.exec())
+        qDebug() << query.lastError();
+    while(query.next())
+        total = query.value(0).toDouble();
+
+
+    double spend = ui->espendLine->text().toDouble();
+    double spendpct = (spend/total) * 100, savepct = (qFabs(total - spend) / total) * 100;
+
+    query.prepare("UPDATE Paychecks SET SpendPct = '" + QString::number(spendpct) + "', SavePct = '" + QString::number(savepct) + "' "
+                  "WHERE Date = '" + date + "';");
+    if(!query.exec())
+        qDebug() << query.lastError();
+    ui->esaveLine->setText(QString::number(qFabs(total - spend)));
+}
+
+void finance_page::savingAmount() {
+    QSqlQuery query;
+    double total;
+    QString date = ui->edateLine->text();
+    query.prepare("SELECT Amount FROM Paychecks WHERE Date = '" + date + "'");
+    if(!query.exec())
+        qDebug() << query.lastError();
+    while(query.next())
+        total = query.value(0).toDouble();
+
+    double save = ui->esaveLine->text().toDouble();
+    ui->espendLine->setText(QString::number(qFabs(total - save)));
+}
+/*!
+ * \brief Function lets you submit an earning
+ */
 void finance_page::submitEarning() {
     QSqlQuery query;
 
@@ -428,7 +580,7 @@ void finance_page::submitEarning() {
         if(!query.exec())
             qDebug() << query.lastError();
 
-        QMessageBox::information(this, "Success!", "Purchase added!");
+        //QMessageBox::information(this, "Success!", "Purchase added!"); definitely not needed
 
         ui->edateLine->setText("");
         ui->espendLine->setText("");
@@ -438,26 +590,39 @@ void finance_page::submitEarning() {
     }
 }
 
+/*!
+ * \brief Guess what this does
+ */
 void finance_page::deleteEarning() {
     QSqlQuery query, actuallydelete;
     QString date = ui->edateLine->text();
     QString spent = ui->espendLine->text();
     QString saved = ui->esaveLine->text();
 
-
+   // qDebug() << spent + " SAVED " + saved;
 
     query.prepare("DELETE FROM Earnings WHERE Date = '" + date + "' AND Spending LIKE '%" + spent + "%' AND Saving LIKE '%" + saved + "%'");
 
     if(!query.exec())
         qDebug() << query.lastError();
 
+    actuallydelete.prepare("DELETE FROM Paychecks WHERE Date = '" + date + "'");
+
+    if(!actuallydelete.exec())
+        qDebug() << actuallydelete.lastError();
+
     ui->edateLine->setText("");
     ui->espendLine->setText("");
     ui->esaveLine->setText("");
     refreshEarningsPage();
     refreshEarnings();
+    refreshPaychecks();
 }
 
+/*!
+ * \brief Adds all the shit where it needs to go when you click the date
+ * \param index
+ */
 void finance_page::earningsClicked(const QModelIndex &index) {
     QSqlQuery query;
     QString val = ui->earningsTable->model()->data(index).toString();
@@ -469,13 +634,43 @@ void finance_page::earningsClicked(const QModelIndex &index) {
 
     else {
         while(query.next()) {
-            ui->edateLine->setText(query.value(0).toString());
-            ui->espendLine->setText(QString::number(query.value(1).toDouble(), 'f', 1));
-            ui->esaveLine->setText(QString::number(query.value(2).toDouble(), 'f', 1));
+            if(!checkForZero(index)) {
+                ui->edateLine->setText(query.value(0).toString());
+                ui->espendLine->setText(QString::number(query.value(1).toDouble(), 'f', 1));
+                ui->esaveLine->setText(QString::number(query.value(2).toDouble(), 'f', 1));
+            } else if (checkForZero(index)){
+                ui->edateLine->setText(query.value(0).toString());
+                ui->espendLine->setText(QString::number(query.value(1).toDouble(), 'f', 0));
+                ui->esaveLine->setText(QString::number(query.value(2).toDouble(), 'f', 0));
+            }
         }
     }
 }
 
+bool finance_page::checkForZero(const QModelIndex &index) {
+    QSqlQuery query;
+    QString val = ui->earningsTable->model()->data(index).toString();
+
+    query.prepare("SELECT * FROM Earnings WHERE Date = '" + val + "';");
+
+    if(!query.exec())
+        qDebug() << query.lastError();
+
+    else {
+        while(query.next()) {
+            QString spendStr = QVariant(QString::number(query.value(1).toDouble(), 'f', 1)).toString();
+            for(int i = 0; i < spendStr.size() - 1; ++i) {
+                if(spendStr[i] == '.')
+                    if(spendStr[i+1] == '0')
+                        return true;
+            }
+        }
+    }
+    return false;
+}
+/*!
+ * \brief Confusing, but this updates the tableview with info from the db
+ */
 void finance_page::refreshEarningsPage() {
     QSqlQuery query;
     QSqlRecord record;
@@ -498,6 +693,9 @@ void finance_page::refreshEarningsPage() {
     refreshEarnings();
 }
 
+/*!
+ * \brief Fucking guess what this does
+ */
 void finance_page::searchEarnings() {
     QSqlQuery query;
     QSqlRecord record;

@@ -1,19 +1,19 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'finance_page.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.14.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.15.0)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
 #include <memory>
-#include "../FinanceCalculatorV2/finance_page.h"
+#include "../../FinanceCalculatorV2/finance_page.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'finance_page.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.14.1. It"
+#error "This file was generated using the moc from 5.15.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_finance_page_t {
-    QByteArrayData data[32];
-    char stringdata0[448];
+    QByteArrayData data[30];
+    char stringdata0[420];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -55,15 +55,13 @@ QT_MOC_LITERAL(19, 258, 12), // "editPaycheck"
 QT_MOC_LITERAL(20, 271, 14), // "deletePaycheck"
 QT_MOC_LITERAL(21, 286, 16), // "paychecksClicked"
 QT_MOC_LITERAL(22, 303, 11), // "editEarning"
-QT_MOC_LITERAL(23, 315, 14), // "spendingAmount"
-QT_MOC_LITERAL(24, 330, 12), // "savingAmount"
-QT_MOC_LITERAL(25, 343, 15), // "earningsClicked"
-QT_MOC_LITERAL(26, 359, 12), // "checkForZero"
-QT_MOC_LITERAL(27, 372, 13), // "submitEarning"
-QT_MOC_LITERAL(28, 386, 13), // "deleteEarning"
-QT_MOC_LITERAL(29, 400, 12), // "goToEarnings"
-QT_MOC_LITERAL(30, 413, 14), // "searchEarnings"
-QT_MOC_LITERAL(31, 428, 19) // "refreshEarningsPage"
+QT_MOC_LITERAL(23, 315, 15), // "earningsClicked"
+QT_MOC_LITERAL(24, 331, 12), // "checkForZero"
+QT_MOC_LITERAL(25, 344, 13), // "submitEarning"
+QT_MOC_LITERAL(26, 358, 13), // "deleteEarning"
+QT_MOC_LITERAL(27, 372, 12), // "goToEarnings"
+QT_MOC_LITERAL(28, 385, 14), // "searchEarnings"
+QT_MOC_LITERAL(29, 400, 19) // "refreshEarningsPage"
 
     },
     "finance_page\0searchPurchases\0\0"
@@ -76,9 +74,8 @@ QT_MOC_LITERAL(31, 428, 19) // "refreshEarningsPage"
     "spendPercent\0savePercent\0submitPaycheck\0"
     "editPaycheck\0deletePaycheck\0"
     "paychecksClicked\0editEarning\0"
-    "spendingAmount\0savingAmount\0earningsClicked\0"
-    "checkForZero\0submitEarning\0deleteEarning\0"
-    "goToEarnings\0searchEarnings\0"
+    "earningsClicked\0checkForZero\0submitEarning\0"
+    "deleteEarning\0goToEarnings\0searchEarnings\0"
     "refreshEarningsPage"
 };
 #undef QT_MOC_LITERAL
@@ -89,7 +86,7 @@ static const uint qt_meta_data_finance_page[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      28,   14, // methods
+      26,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -97,34 +94,32 @@ static const uint qt_meta_data_finance_page[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  154,    2, 0x08 /* Private */,
-       3,    0,  155,    2, 0x08 /* Private */,
-       4,    0,  156,    2, 0x08 /* Private */,
-       5,    0,  157,    2, 0x08 /* Private */,
-       6,    1,  158,    2, 0x08 /* Private */,
-       9,    0,  161,    2, 0x08 /* Private */,
-      10,    0,  162,    2, 0x08 /* Private */,
-      11,    0,  163,    2, 0x08 /* Private */,
-      12,    0,  164,    2, 0x08 /* Private */,
-      13,    0,  165,    2, 0x08 /* Private */,
-      14,    0,  166,    2, 0x08 /* Private */,
-      15,    0,  167,    2, 0x08 /* Private */,
-      16,    0,  168,    2, 0x08 /* Private */,
-      17,    0,  169,    2, 0x08 /* Private */,
-      18,    0,  170,    2, 0x08 /* Private */,
-      19,    0,  171,    2, 0x08 /* Private */,
-      20,    0,  172,    2, 0x08 /* Private */,
-      21,    1,  173,    2, 0x08 /* Private */,
-      22,    0,  176,    2, 0x08 /* Private */,
-      23,    0,  177,    2, 0x08 /* Private */,
-      24,    0,  178,    2, 0x08 /* Private */,
-      25,    1,  179,    2, 0x08 /* Private */,
-      26,    1,  182,    2, 0x08 /* Private */,
-      27,    0,  185,    2, 0x08 /* Private */,
-      28,    0,  186,    2, 0x08 /* Private */,
-      29,    0,  187,    2, 0x08 /* Private */,
-      30,    0,  188,    2, 0x08 /* Private */,
-      31,    0,  189,    2, 0x08 /* Private */,
+       1,    0,  144,    2, 0x08 /* Private */,
+       3,    0,  145,    2, 0x08 /* Private */,
+       4,    0,  146,    2, 0x08 /* Private */,
+       5,    0,  147,    2, 0x08 /* Private */,
+       6,    1,  148,    2, 0x08 /* Private */,
+       9,    0,  151,    2, 0x08 /* Private */,
+      10,    0,  152,    2, 0x08 /* Private */,
+      11,    0,  153,    2, 0x08 /* Private */,
+      12,    0,  154,    2, 0x08 /* Private */,
+      13,    0,  155,    2, 0x08 /* Private */,
+      14,    0,  156,    2, 0x08 /* Private */,
+      15,    0,  157,    2, 0x08 /* Private */,
+      16,    0,  158,    2, 0x08 /* Private */,
+      17,    0,  159,    2, 0x08 /* Private */,
+      18,    0,  160,    2, 0x08 /* Private */,
+      19,    0,  161,    2, 0x08 /* Private */,
+      20,    0,  162,    2, 0x08 /* Private */,
+      21,    1,  163,    2, 0x08 /* Private */,
+      22,    0,  166,    2, 0x08 /* Private */,
+      23,    1,  167,    2, 0x08 /* Private */,
+      24,    1,  170,    2, 0x08 /* Private */,
+      25,    0,  173,    2, 0x08 /* Private */,
+      26,    0,  174,    2, 0x08 /* Private */,
+      27,    0,  175,    2, 0x08 /* Private */,
+      28,    0,  176,    2, 0x08 /* Private */,
+      29,    0,  177,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -145,8 +140,6 @@ static const uint qt_meta_data_finance_page[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 7,    8,
-    QMetaType::Void,
-    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, 0x80000000 | 7,    8,
     QMetaType::Bool, 0x80000000 | 7,    8,
@@ -184,16 +177,14 @@ void finance_page::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 16: _t->deletePaycheck(); break;
         case 17: _t->paychecksClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         case 18: _t->editEarning(); break;
-        case 19: _t->spendingAmount(); break;
-        case 20: _t->savingAmount(); break;
-        case 21: _t->earningsClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 22: { bool _r = _t->checkForZero((*reinterpret_cast< const QModelIndex(*)>(_a[1])));
+        case 19: _t->earningsClicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 20: { bool _r = _t->checkForZero((*reinterpret_cast< const QModelIndex(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 23: _t->submitEarning(); break;
-        case 24: _t->deleteEarning(); break;
-        case 25: _t->goToEarnings(); break;
-        case 26: _t->searchEarnings(); break;
-        case 27: _t->refreshEarningsPage(); break;
+        case 21: _t->submitEarning(); break;
+        case 22: _t->deleteEarning(); break;
+        case 23: _t->goToEarnings(); break;
+        case 24: _t->searchEarnings(); break;
+        case 25: _t->refreshEarningsPage(); break;
         default: ;
         }
     }
@@ -228,13 +219,13 @@ int finance_page::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 28)
+        if (_id < 26)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 28;
+        _id -= 26;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 28)
+        if (_id < 26)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 28;
+        _id -= 26;
     }
     return _id;
 }

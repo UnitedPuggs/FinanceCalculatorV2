@@ -596,7 +596,7 @@ moc_finance_page.cpp: ../FinanceCalculatorV2/finance_page.h \
 		C:/Qt/5.14.1/mingw73_64/include/QtGui/qicon.h \
 		moc_predefs.h \
 		C:/Qt/5.14.1/mingw73_64/bin/moc.exe
-	C:\Qt\5.14.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/Eddie/Documents/GitHub/FinanceCalculatorV2/build-FinanceCalculatorV2-Desktop_Qt_5_14_1_MinGW_64_bit-Release/moc_predefs.h -IC:/Qt/5.14.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/Eddie/Documents/GitHub/FinanceCalculatorV2/FinanceCalculatorV2 -IC:/Qt/5.14.1/mingw73_64/include -IC:/Qt/5.14.1/mingw73_64/include/QtWidgets -IC:/Qt/5.14.1/mingw73_64/include/QtGui -IC:/Qt/5.14.1/mingw73_64/include/QtANGLE -IC:/Qt/5.14.1/mingw73_64/include/QtSql -IC:/Qt/5.14.1/mingw73_64/include/QtCore -I. -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\FinanceCalculatorV2\finance_page.h -o moc_finance_page.cpp
+	C:\Qt\5.14.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/edpou/Documents/GitHub/FinanceCalculatorV2/build-FinanceCalculatorV2-Desktop_Qt_5_14_1_MinGW_64_bit-Release/moc_predefs.h -IC:/Qt/5.14.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/edpou/Documents/GitHub/FinanceCalculatorV2/FinanceCalculatorV2 -IC:/Qt/5.14.1/mingw73_64/include -IC:/Qt/5.14.1/mingw73_64/include/QtWidgets -IC:/Qt/5.14.1/mingw73_64/include/QtGui -IC:/Qt/5.14.1/mingw73_64/include/QtANGLE -IC:/Qt/5.14.1/mingw73_64/include/QtSql -IC:/Qt/5.14.1/mingw73_64/include/QtCore -I. -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\FinanceCalculatorV2\finance_page.h -o moc_finance_page.cpp
 
 moc_login_screen.cpp: ../FinanceCalculatorV2/login_screen.h \
 		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/QMainWindow \
@@ -706,10 +706,186 @@ moc_login_screen.cpp: ../FinanceCalculatorV2/login_screen.h \
 		C:/Qt/5.14.1/mingw73_64/include/QtGui/qtouchdevice.h \
 		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/5.14.1/mingw73_64/include/QtGui/qicon.h \
+		../FinanceCalculatorV2/header.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QCoreApplication \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qeventloop.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/QApplication \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qapplication.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtGui/qguiapplication.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtGui/qinputmethod.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QStringList \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QVector \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QString \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QDebug \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QList \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QFile \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/QMessageBox \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qmessagebox.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qdialog.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/QtSql \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/QtSqlDepends \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QtCore \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QtCoreDepends \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstractanimation.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstracteventdispatcher.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstractnativeeventfilter.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstractproxymodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstractstate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstracttransition.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qanimationgroup.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qarraydataops.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qbasictimer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qbitarray.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qbuffer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qbytearraymatcher.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcache.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcalendar.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcborarray.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcborvalue.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qdatetime.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcborcommon.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qregularexpression.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/quuid.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcbormap.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcborstream.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfloat16.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcollator.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcommandlineoption.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcommandlineparser.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qconcatenatetablesproxymodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcryptographichash.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qdir.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfileinfo.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qdiriterator.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qeasingcurve.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qendian.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qeventtransition.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qexception.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfactoryinterface.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfileselector.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QObject \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfilesystemwatcher.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfinalstate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfuture.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qrunnable.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qresultstore.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfuturesynchronizer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfuturewatcher.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qhistorystate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qidentityproxymodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qisenum.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qjsonarray.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qjsonvalue.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qjsondocument.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qjsonobject.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qlibrary.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qlibraryinfo.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qversionnumber.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qlinkedlist.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qlockfile.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qloggingcategory.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qmath.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qmessageauthenticationcode.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qmetaobject.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qmimedata.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qmimedatabase.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qmimetype.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qobjectcleanuphandler.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qoperatingsystemversion.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qparallelanimationgroup.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qpauseanimation.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qplugin.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qpointer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qpluginloader.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qprocess.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qpropertyanimation.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qvariantanimation.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qqueue.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qrandom.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qreadwritelock.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qresource.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsavefile.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qscopedvaluerollback.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qscopeguard.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsemaphore.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsequentialanimationgroup.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsettings.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsharedmemory.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsignalmapper.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsignaltransition.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsocketnotifier.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsortfilterproxymodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qstack.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qstandardpaths.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qstate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qstatemachine.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qstorageinfo.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qstringlistmodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsystemsemaphore.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtemporarydir.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtemporaryfile.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtextboundaryfinder.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtextcodec.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qthread.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qthreadpool.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qthreadstorage.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtimeline.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtimer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtimezone.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtranslator.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtransposeproxymodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtypetraits.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qwaitcondition.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qwineventnotifier.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qxmlstream.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtcoreversion.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qtsqlglobal.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qtsql-config.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqldatabase.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqldriver.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqldriverplugin.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlerror.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlfield.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlindex.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlrecord.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlquery.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlquerymodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlrelationaldelegate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qitemdelegate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtGui/qvalidator.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qslider.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qstyle.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qframe.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qlistview.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qcombobox.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlrelationaltablemodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqltablemodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlresult.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qtsqlversion.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlDatabase \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlDriver \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlError \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlQuery \
 		../FinanceCalculatorV2/finance_page.h \
 		moc_predefs.h \
 		C:/Qt/5.14.1/mingw73_64/bin/moc.exe
-	C:\Qt\5.14.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/Eddie/Documents/GitHub/FinanceCalculatorV2/build-FinanceCalculatorV2-Desktop_Qt_5_14_1_MinGW_64_bit-Release/moc_predefs.h -IC:/Qt/5.14.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/Eddie/Documents/GitHub/FinanceCalculatorV2/FinanceCalculatorV2 -IC:/Qt/5.14.1/mingw73_64/include -IC:/Qt/5.14.1/mingw73_64/include/QtWidgets -IC:/Qt/5.14.1/mingw73_64/include/QtGui -IC:/Qt/5.14.1/mingw73_64/include/QtANGLE -IC:/Qt/5.14.1/mingw73_64/include/QtSql -IC:/Qt/5.14.1/mingw73_64/include/QtCore -I. -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\FinanceCalculatorV2\login_screen.h -o moc_login_screen.cpp
+	C:\Qt\5.14.1\mingw73_64\bin\moc.exe $(DEFINES) --include C:/Users/edpou/Documents/GitHub/FinanceCalculatorV2/build-FinanceCalculatorV2-Desktop_Qt_5_14_1_MinGW_64_bit-Release/moc_predefs.h -IC:/Qt/5.14.1/mingw73_64/mkspecs/win32-g++ -IC:/Users/edpou/Documents/GitHub/FinanceCalculatorV2/FinanceCalculatorV2 -IC:/Qt/5.14.1/mingw73_64/include -IC:/Qt/5.14.1/mingw73_64/include/QtWidgets -IC:/Qt/5.14.1/mingw73_64/include/QtGui -IC:/Qt/5.14.1/mingw73_64/include/QtANGLE -IC:/Qt/5.14.1/mingw73_64/include/QtSql -IC:/Qt/5.14.1/mingw73_64/include/QtCore -I. -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -IC:/Qt/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -IC:/Qt/Tools/mingw730_64/x86_64-w64-mingw32/include ..\FinanceCalculatorV2\login_screen.h -o moc_login_screen.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1308,7 +1484,8 @@ finance_page.o: ../FinanceCalculatorV2/finance_page.cpp ../FinanceCalculatorV2/f
 		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlError \
 		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlQuery \
 		C:/Qt/5.14.1/mingw73_64/include/QtCore/QRegExp \
-		C:/Qt/5.14.1/mingw73_64/include/QtGui/QRegExpValidator
+		C:/Qt/5.14.1/mingw73_64/include/QtGui/QRegExpValidator \
+		../FinanceCalculatorV2/login_screen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o finance_page.o ..\FinanceCalculatorV2\finance_page.cpp
 
 main.o: ../FinanceCalculatorV2/main.cpp ../FinanceCalculatorV2/login_screen.h \
@@ -1419,8 +1596,6 @@ main.o: ../FinanceCalculatorV2/main.cpp ../FinanceCalculatorV2/login_screen.h \
 		C:/Qt/5.14.1/mingw73_64/include/QtGui/qtouchdevice.h \
 		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/5.14.1/mingw73_64/include/QtGui/qicon.h \
-		../FinanceCalculatorV2/finance_page.h \
-		../FinanceCalculatorV2/database.h \
 		../FinanceCalculatorV2/header.h \
 		C:/Qt/5.14.1/mingw73_64/include/QtCore/QCoreApplication \
 		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcoreapplication.h \
@@ -1596,7 +1771,9 @@ main.o: ../FinanceCalculatorV2/main.cpp ../FinanceCalculatorV2/login_screen.h \
 		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlDatabase \
 		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlDriver \
 		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlError \
-		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlQuery
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlQuery \
+		../FinanceCalculatorV2/finance_page.h \
+		../FinanceCalculatorV2/database.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ..\FinanceCalculatorV2\main.cpp
 
 login_screen.o: ../FinanceCalculatorV2/login_screen.cpp ../FinanceCalculatorV2/login_screen.h \
@@ -1707,11 +1884,184 @@ login_screen.o: ../FinanceCalculatorV2/login_screen.cpp ../FinanceCalculatorV2/l
 		C:/Qt/5.14.1/mingw73_64/include/QtGui/qtouchdevice.h \
 		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qtabwidget.h \
 		C:/Qt/5.14.1/mingw73_64/include/QtGui/qicon.h \
-		../FinanceCalculatorV2/finance_page.h \
-		ui_login_screen.h \
+		../FinanceCalculatorV2/header.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QCoreApplication \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qeventloop.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/QApplication \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qapplication.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtGui/qguiapplication.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtGui/qinputmethod.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QStringList \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QVector \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QString \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QDebug \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QList \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QFile \
 		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/QMessageBox \
 		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qmessagebox.h \
-		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qdialog.h
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qdialog.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/QtSql \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/QtSqlDepends \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QtCore \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QtCoreDepends \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstractanimation.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstracteventdispatcher.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstractnativeeventfilter.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstractproxymodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstractstate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qabstracttransition.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qanimationgroup.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qarraydataops.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qbasictimer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qbitarray.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qbuffer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qbytearraymatcher.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcache.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcalendar.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcborarray.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcborvalue.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qdatetime.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcborcommon.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qregularexpression.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/quuid.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcbormap.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcborstream.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfloat16.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcollator.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcommandlineoption.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcommandlineparser.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qconcatenatetablesproxymodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qcryptographichash.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qdeadlinetimer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qelapsedtimer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qdir.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfileinfo.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qdiriterator.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qeasingcurve.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qendian.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qeventtransition.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qexception.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfactoryinterface.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfileselector.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/QObject \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfilesystemwatcher.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfinalstate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfuture.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfutureinterface.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qrunnable.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qresultstore.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfuturesynchronizer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qfuturewatcher.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qhistorystate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qidentityproxymodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qisenum.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qjsonarray.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qjsonvalue.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qjsondocument.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qjsonobject.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qlibrary.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qlibraryinfo.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qversionnumber.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qlinkedlist.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qlockfile.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qloggingcategory.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qmath.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qmessageauthenticationcode.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qmetaobject.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qmimedata.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qmimedatabase.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qmimetype.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qobjectcleanuphandler.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qoperatingsystemversion.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qparallelanimationgroup.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qpauseanimation.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qplugin.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qpointer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qpluginloader.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qprocess.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qpropertyanimation.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qvariantanimation.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qqueue.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qrandom.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qreadwritelock.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qresource.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsavefile.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qscopedvaluerollback.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qscopeguard.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsemaphore.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsequentialanimationgroup.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsettings.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsharedmemory.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsignalmapper.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsignaltransition.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsocketnotifier.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsortfilterproxymodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qstack.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qstandardpaths.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qstate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qstatemachine.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qstorageinfo.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qstringlistmodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qsystemsemaphore.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtemporarydir.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtemporaryfile.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtextboundaryfinder.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtextcodec.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qthread.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qthreadpool.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qthreadstorage.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtimeline.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtimer.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtimezone.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtranslator.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtransposeproxymodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtypetraits.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qwaitcondition.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qwineventnotifier.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qxmlstream.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtCore/qtcoreversion.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qtsqlglobal.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qtsql-config.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqldatabase.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqldriver.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqldriverplugin.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlerror.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlfield.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlindex.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlrecord.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlquery.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlquerymodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlrelationaldelegate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qitemdelegate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtGui/qvalidator.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qslider.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qstyle.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qframe.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qlistview.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtWidgets/qcombobox.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlrelationaltablemodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqltablemodel.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qsqlresult.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/qtsqlversion.h \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlDatabase \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlDriver \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlError \
+		C:/Qt/5.14.1/mingw73_64/include/QtSql/QSqlQuery \
+		../FinanceCalculatorV2/finance_page.h \
+		ui_login_screen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o login_screen.o ..\FinanceCalculatorV2\login_screen.cpp
 
 moc_finance_page.o: moc_finance_page.cpp 

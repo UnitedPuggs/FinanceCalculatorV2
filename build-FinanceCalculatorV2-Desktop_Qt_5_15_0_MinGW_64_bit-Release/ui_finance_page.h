@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'finance_page.ui'
 **
-** Created by: Qt User Interface Compiler version 5.14.1
+** Created by: Qt User Interface Compiler version 5.15.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -159,7 +159,7 @@ public:
         financeTable->setGeometry(QRect(200, 40, 601, 431));
         verticalLayoutWidget = new QWidget(financePage);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(20, 40, 161, 431));
+        verticalLayoutWidget->setGeometry(QRect(20, 40, 161, 401));
         infovert = new QVBoxLayout(verticalLayoutWidget);
         infovert->setObjectName(QString::fromUtf8("infovert"));
         infovert->setContentsMargins(0, 0, 0, 0);
@@ -315,7 +315,7 @@ public:
         paycheckTable->setGeometry(QRect(200, 40, 601, 431));
         verticalLayoutWidget_10 = new QWidget(paycheckPage);
         verticalLayoutWidget_10->setObjectName(QString::fromUtf8("verticalLayoutWidget_10"));
-        verticalLayoutWidget_10->setGeometry(QRect(30, 40, 151, 375));
+        verticalLayoutWidget_10->setGeometry(QRect(30, 40, 151, 345));
         checkvert = new QVBoxLayout(verticalLayoutWidget_10);
         checkvert->setObjectName(QString::fromUtf8("checkvert"));
         checkvert->setContentsMargins(0, 0, 0, 0);
@@ -361,7 +361,6 @@ public:
 
         spendingPercent = new QDoubleSpinBox(verticalLayoutWidget_10);
         spendingPercent->setObjectName(QString::fromUtf8("spendingPercent"));
-        spendingPercent->setMaximum(100.000000000000000);
 
         spendvert->addWidget(spendingPercent);
 
@@ -377,7 +376,6 @@ public:
 
         savingPercent = new QDoubleSpinBox(verticalLayoutWidget_10);
         savingPercent->setObjectName(QString::fromUtf8("savingPercent"));
-        savingPercent->setMaximum(100.000000000000000);
 
         savevert->addWidget(savingPercent);
 
@@ -464,7 +462,7 @@ public:
         earningsTable->setGeometry(QRect(200, 40, 601, 431));
         verticalLayoutWidget_17 = new QWidget(earningsPage);
         verticalLayoutWidget_17->setObjectName(QString::fromUtf8("verticalLayoutWidget_17"));
-        verticalLayoutWidget_17->setGeometry(QRect(20, 40, 160, 256));
+        verticalLayoutWidget_17->setGeometry(QRect(20, 40, 160, 252));
         earningvert = new QVBoxLayout(verticalLayoutWidget_17);
         earningvert->setObjectName(QString::fromUtf8("earningvert"));
         earningvert->setContentsMargins(0, 0, 0, 0);
@@ -570,7 +568,7 @@ public:
         stackedWidget->addWidget(earningsPage);
         verticalLayoutWidget_7 = new QWidget(centralwidget);
         verticalLayoutWidget_7->setObjectName(QString::fromUtf8("verticalLayoutWidget_7"));
-        verticalLayoutWidget_7->setGeometry(QRect(50, 90, 95, 121));
+        verticalLayoutWidget_7->setGeometry(QRect(50, 90, 82, 121));
         windowvert = new QVBoxLayout(verticalLayoutWidget_7);
         windowvert->setObjectName(QString::fromUtf8("windowvert"));
         windowvert->setContentsMargins(0, 0, 0, 0);
@@ -639,7 +637,7 @@ public:
 
         verticalLayoutWidget_16 = new QWidget(centralwidget);
         verticalLayoutWidget_16->setObjectName(QString::fromUtf8("verticalLayoutWidget_16"));
-        verticalLayoutWidget_16->setGeometry(QRect(40, 460, 106, 31));
+        verticalLayoutWidget_16->setGeometry(QRect(40, 460, 101, 31));
         acctvert = new QVBoxLayout(verticalLayoutWidget_16);
         acctvert->setObjectName(QString::fromUtf8("acctvert"));
         acctvert->setContentsMargins(0, 0, 0, 0);
@@ -661,7 +659,7 @@ public:
         finance_page->setCentralWidget(centralwidget);
         menubar = new QMenuBar(finance_page);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1198, 26));
+        menubar->setGeometry(QRect(0, 0, 1198, 20));
         finance_page->setMenuBar(menubar);
         statusbar = new QStatusBar(finance_page);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -695,8 +693,6 @@ public:
         QObject::connect(earningEditButton, SIGNAL(clicked()), finance_page, SLOT(editEarning()));
         QObject::connect(edeleteButton, SIGNAL(clicked()), finance_page, SLOT(deleteEarning()));
         QObject::connect(earningsTable, SIGNAL(clicked(QModelIndex)), finance_page, SLOT(earningsClicked(QModelIndex)));
-        QObject::connect(esaveLine, SIGNAL(textChanged(QString)), finance_page, SLOT(savingAmount()));
-        QObject::connect(espendLine, SIGNAL(textChanged(QString)), finance_page, SLOT(spendingAmount()));
 
         QMetaObject::connectSlotsByName(finance_page);
     } // setupUi

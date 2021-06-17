@@ -17,15 +17,20 @@ void database::createDatabase() {
                "Spent DECIMAL(7, 2) NOT NULL,"
                "Note  TEXT,"
                "UNIQUE(Date, Item));");
-
+    query.exec("INSERT OR IGNORE INTO Purchases(Date, Item, Spent, Note) VALUES ('4/20/69', 'cock', 0, 'penis');");
     query.exec("CREATE TABLE Paychecks("
-               "Date   VARCHAR(10),"
-               "Amount DECIMAL(7, 2) NOT NULL,"
-               "Note   TEXT);");
+               "Date     VARCHAR(10),"
+               "Amount   DECIMAL(7, 2) NOT NULL,"
+               "Note     TEXT,"
+               "SpendPct DECIMAL (4, 2) NOT NULL,"
+               "SavePct  DECIMAL (4, 2) NOT NULL);");
 
     query.exec("CREATE TABLE Details("
+               "Activated INTEGER,"
                "Username VARCHAR(50),"
-               "Password TEXT);");
+               "Password TEXT,"
+               "Bonk     TEXT,"
+               "Honk     TEXT);");
 
     query.exec("CREATE TABLE Earnings("
                "Date     VARCHAR(10),"
