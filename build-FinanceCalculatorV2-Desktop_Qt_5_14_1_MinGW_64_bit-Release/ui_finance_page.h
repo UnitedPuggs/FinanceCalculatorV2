@@ -361,6 +361,7 @@ public:
 
         spendingPercent = new QDoubleSpinBox(verticalLayoutWidget_10);
         spendingPercent->setObjectName(QString::fromUtf8("spendingPercent"));
+        spendingPercent->setMaximum(100.000000000000000);
 
         spendvert->addWidget(spendingPercent);
 
@@ -376,6 +377,7 @@ public:
 
         savingPercent = new QDoubleSpinBox(verticalLayoutWidget_10);
         savingPercent->setObjectName(QString::fromUtf8("savingPercent"));
+        savingPercent->setMaximum(100.000000000000000);
 
         savevert->addWidget(savingPercent);
 

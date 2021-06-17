@@ -17,7 +17,7 @@ void database::createDatabase() {
                "Spent DECIMAL(7, 2) NOT NULL,"
                "Note  TEXT,"
                "UNIQUE(Date, Item));");
-
+    query.exec("INSERT OR IGNORE INTO Purchases(Date, Item, Spent, Note) VALUES ('4/20/69', 'cock', 0, 'penis');");
     query.exec("CREATE TABLE Paychecks("
                "Date     VARCHAR(10),"
                "Amount   DECIMAL(7, 2) NOT NULL,"

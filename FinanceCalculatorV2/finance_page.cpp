@@ -55,7 +55,7 @@ void finance_page::searchPurchases() {
     QSqlQueryModel *model = new QSqlQueryModel();
     QString search = ui->searchLine->text();
 
-    query.prepare("SELECT * FROM Purchases WHERE Date LIKE '%" + search + "%' OR Item LIKE '%" + search + "%'");
+    query.prepare("SELECT * FROM Purchases WHERE NOT Date = '4/20/69' AND Date LIKE '%" + search + "%' OR Item LIKE '%" + search + "%'");
 
     if(!query.exec())
         qDebug() << query.lastError();
@@ -128,7 +128,7 @@ void finance_page::refreshPurchases() {
     QSqlRecord record;
     QSqlQueryModel *model = new QSqlQueryModel();
 
-    query.prepare("SELECT * FROM Purchases ORDER BY Date ASC");
+    query.prepare("SELECT * FROM Purchases WHERE NOT Date = '4/20/69' ORDER BY Date ASC");
 
     if(!query.exec())
         qDebug() << query.lastError();
@@ -393,11 +393,9 @@ void finance_page::editPaycheck() {
 
     if(!earningQuery.exec())
         qDebug() << earningQuery.lastError();
-    //use update shit to update earnings whoops
-    //I think I wrote most of these comments while high, so to clarify, use the update functionality to actually update earnings
-    //maybe create a helper function that updates earnings in relation to paychecks?
     refreshPaychecks();
     //refreshEarnings(); //this does do the update shit homie
+    //^^ I have no idea what this comment means anymore, but I'll leave it cuz it works I guess?
 }
 
 /*!
@@ -434,29 +432,38 @@ void finance_page::deletePaycheck() {
 void finance_page::refreshEarnings() {
     QSqlQuery query, query1, temp;
     double spending = 0, saving = 0;
-    query.exec("SELECT ((SELECT Sum(Earnings.Spending) FROM Earnings) - (SELECT Sum(Purchases.Spent) FROM Purchases))");
+    query.prepare("SELECT ((SELECT Sum(Earnings.Spending) FROM Earnings) - (SELECT Sum(Purchases.Spent) FROM Purchases))");
+    //if there are no purchases then it returns null
 
+    if(!query.exec())
+          qDebug() << query.lastError();
     while(query.next())
         spending = query.value(0).toDouble();
-    if(!query.exec())
-        qDebug() << query.lastError();
-    
-    query1.exec("SELECT Sum(Earnings.Saving) FROM Earnings");
+
+
+
+    query1.prepare("SELECT Sum(Earnings.Saving) FROM Earnings");
     if(!query1.exec())
         qDebug() << query1.lastError();
     while (query1.next())
         saving = query1.value(0).toDouble();
     
-    if (spending == 0)
-        temp.exec("SELECT Sum(Earnings.Spending) FROM Earnings");
-    if(!temp.exec())
-        qDebug() << temp.lastError();
-    while(temp.next())
-        spending = temp.value(0).toDouble();
-    
+    //if (spending == 0)
+      //  temp.exec("SELECT Sum(Earnings.Spending) FROM Earnings");
+    //if(!temp.exec())
+      //  qDebug() << temp.lastError();
+    //while(temp.next())
+      //  spending = temp.value(0).toDouble();
 
-    ui->spendingLine->setText(QString::number(spending, 'f', 2));
-    ui->savingsLine->setText(QString::number(saving, 'f', 2));
+    //this shit is so scuffed lmaoo, but hey it's kinda big brain I think
+    if(spending < 0) {
+        ui->spendingLine->setText("0");
+        saving += spending;
+        ui->savingsLine->setText(QString::number(saving, 'f', 2));
+    } else {
+        ui->spendingLine->setText(QString::number(spending, 'f', 2));
+        ui->savingsLine->setText(QString::number(saving, 'f', 2));
+    }
 }
 
 /*!
@@ -652,7 +659,7 @@ bool finance_page::checkForZero(const QModelIndex &index) {
     else {
         while(query.next()) {
             QString spendStr = QVariant(QString::number(query.value(1).toDouble(), 'f', 1)).toString();
-            for(int i = 0; i < spendStr.size()-1; ++i) {
+            for(int i = 0; i < spendStr.size() - 1; ++i) {
                 if(spendStr[i] == '.')
                     if(spendStr[i+1] == '0')
                         return true;

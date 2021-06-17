@@ -368,7 +368,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="spendingPercent"/>
+              <widget class="QDoubleSpinBox" name="spendingPercent">
+               <property name="maximum">
+                <double>100.000000000000000</double>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -382,7 +386,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="savingPercent"/>
+              <widget class="QDoubleSpinBox" name="savingPercent">
+               <property name="maximum">
+                <double>100.000000000000000</double>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
