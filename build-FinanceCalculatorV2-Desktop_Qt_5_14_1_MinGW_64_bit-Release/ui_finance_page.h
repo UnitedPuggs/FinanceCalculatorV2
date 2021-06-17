@@ -159,9 +159,10 @@ public:
         financeTable->setGeometry(QRect(200, 40, 601, 431));
         verticalLayoutWidget = new QWidget(financePage);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(20, 40, 161, 431));
+        verticalLayoutWidget->setGeometry(QRect(20, 40, 161, 401));
         infovert = new QVBoxLayout(verticalLayoutWidget);
         infovert->setObjectName(QString::fromUtf8("infovert"));
+        infovert->setSizeConstraint(QLayout::SetDefaultConstraint);
         infovert->setContentsMargins(0, 0, 0, 0);
         datevert = new QVBoxLayout();
         datevert->setObjectName(QString::fromUtf8("datevert"));
@@ -315,7 +316,7 @@ public:
         paycheckTable->setGeometry(QRect(200, 40, 601, 431));
         verticalLayoutWidget_10 = new QWidget(paycheckPage);
         verticalLayoutWidget_10->setObjectName(QString::fromUtf8("verticalLayoutWidget_10"));
-        verticalLayoutWidget_10->setGeometry(QRect(30, 40, 151, 375));
+        verticalLayoutWidget_10->setGeometry(QRect(30, 40, 152, 375));
         checkvert = new QVBoxLayout(verticalLayoutWidget_10);
         checkvert->setObjectName(QString::fromUtf8("checkvert"));
         checkvert->setContentsMargins(0, 0, 0, 0);
