@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>savings_goal</class>
+ <widget class="QDialog" name="savings_goal">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>155</width>
+    <height>131</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLineEdit" name="savingsLine">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>50</y>
+     <width>113</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="goalConfirmButton">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>80</y>
+     <width>93</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Set as Goal</string>
+   </property>
+   <property name="autoDefault">
+    <bool>true</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>goalConfirmButton</sender>
+   <signal>clicked()</signal>
+   <receiver>savings_goal</receiver>
+   <slot>emitGoalSignal()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>96</x>
+     <y>87</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>46</x>
+     <y>123</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>emitGoalSignal()</slot>
+ </slots>
+</ui>

@@ -11,7 +11,9 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QDoubleSpinBox>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -38,10 +40,12 @@ public:
     QTableView *financeTable;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *infovert;
+    QVBoxLayout *itemvert;
+    QGridLayout *gridLayout;
     QVBoxLayout *datevert;
     QLabel *dateLabel;
-    QLineEdit *dateLine;
-    QVBoxLayout *itemvert;
+    QDateEdit *purchaseDateEdit;
+    QSpacerItem *verticalSpacer;
     QLabel *itemLabel;
     QLineEdit *itemLine;
     QVBoxLayout *amtvert;
@@ -66,7 +70,7 @@ public:
     QVBoxLayout *checkvert;
     QVBoxLayout *pdatevert;
     QLabel *pdateLabel;
-    QLineEdit *pdateLine;
+    QDateEdit *paycheckDateEdit;
     QVBoxLayout *pctvert;
     QLabel *pamountLabel;
     QLineEdit *pamountLine;
@@ -96,7 +100,7 @@ public:
     QVBoxLayout *earningvert;
     QVBoxLayout *edatevert;
     QLabel *edateLabel;
-    QLineEdit *edateLine;
+    QDateEdit *earningDateEdit;
     QVBoxLayout *espendvert;
     QLabel *espendLabel;
     QLineEdit *espendLine;
@@ -131,6 +135,18 @@ public:
     QPushButton *accountSettings;
     QLabel *currentPageLabel;
     QLabel *pageLabel;
+    QLabel *label;
+    QWidget *verticalLayoutWidget_2;
+    QVBoxLayout *verticalLayout_5;
+    QHBoxLayout *horizontalLayout_2;
+    QSpacerItem *horizontalSpacer_4;
+    QLabel *savingGoalLabel;
+    QSpacerItem *horizontalSpacer_2;
+    QLabel *savingRemainLabel;
+    QHBoxLayout *horizontalLayout;
+    QLineEdit *savingGoalLine;
+    QLineEdit *savingRemainLine;
+    QPushButton *pushButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -159,11 +175,16 @@ public:
         financeTable->setGeometry(QRect(200, 40, 601, 431));
         verticalLayoutWidget = new QWidget(financePage);
         verticalLayoutWidget->setObjectName(QString::fromUtf8("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(20, 40, 161, 401));
+        verticalLayoutWidget->setGeometry(QRect(30, 30, 141, 421));
         infovert = new QVBoxLayout(verticalLayoutWidget);
         infovert->setObjectName(QString::fromUtf8("infovert"));
         infovert->setSizeConstraint(QLayout::SetDefaultConstraint);
         infovert->setContentsMargins(0, 0, 0, 0);
+        itemvert = new QVBoxLayout();
+        itemvert->setObjectName(QString::fromUtf8("itemvert"));
+        itemvert->setSizeConstraint(QLayout::SetNoConstraint);
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         datevert = new QVBoxLayout();
         datevert->setObjectName(QString::fromUtf8("datevert"));
         datevert->setSizeConstraint(QLayout::SetNoConstraint);
@@ -179,22 +200,21 @@ public:
 
         datevert->addWidget(dateLabel, 0, Qt::AlignHCenter);
 
-        dateLine = new QLineEdit(verticalLayoutWidget);
-        dateLine->setObjectName(QString::fromUtf8("dateLine"));
-        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(dateLine->sizePolicy().hasHeightForWidth());
-        dateLine->setSizePolicy(sizePolicy2);
+        purchaseDateEdit = new QDateEdit(verticalLayoutWidget);
+        purchaseDateEdit->setObjectName(QString::fromUtf8("purchaseDateEdit"));
 
-        datevert->addWidget(dateLine, 0, Qt::AlignHCenter);
+        datevert->addWidget(purchaseDateEdit);
+
+        verticalSpacer = new QSpacerItem(20, 25, QSizePolicy::Minimum, QSizePolicy::Ignored);
+
+        datevert->addItem(verticalSpacer);
 
 
-        infovert->addLayout(datevert);
+        gridLayout->addLayout(datevert, 0, 0, 1, 1);
 
-        itemvert = new QVBoxLayout();
-        itemvert->setObjectName(QString::fromUtf8("itemvert"));
-        itemvert->setSizeConstraint(QLayout::SetNoConstraint);
+
+        itemvert->addLayout(gridLayout);
+
         itemLabel = new QLabel(verticalLayoutWidget);
         itemLabel->setObjectName(QString::fromUtf8("itemLabel"));
 
@@ -202,6 +222,9 @@ public:
 
         itemLine = new QLineEdit(verticalLayoutWidget);
         itemLine->setObjectName(QString::fromUtf8("itemLine"));
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(itemLine->sizePolicy().hasHeightForWidth());
         itemLine->setSizePolicy(sizePolicy2);
 
@@ -327,12 +350,10 @@ public:
 
         pdatevert->addWidget(pdateLabel, 0, Qt::AlignHCenter);
 
-        pdateLine = new QLineEdit(verticalLayoutWidget_10);
-        pdateLine->setObjectName(QString::fromUtf8("pdateLine"));
-        sizePolicy2.setHeightForWidth(pdateLine->sizePolicy().hasHeightForWidth());
-        pdateLine->setSizePolicy(sizePolicy2);
+        paycheckDateEdit = new QDateEdit(verticalLayoutWidget_10);
+        paycheckDateEdit->setObjectName(QString::fromUtf8("paycheckDateEdit"));
 
-        pdatevert->addWidget(pdateLine, 0, Qt::AlignHCenter);
+        pdatevert->addWidget(paycheckDateEdit);
 
 
         checkvert->addLayout(pdatevert);
@@ -473,15 +494,15 @@ public:
         edatevert->setObjectName(QString::fromUtf8("edatevert"));
         edateLabel = new QLabel(verticalLayoutWidget_17);
         edateLabel->setObjectName(QString::fromUtf8("edateLabel"));
+        edateLabel->setLayoutDirection(Qt::LeftToRight);
+        edateLabel->setAlignment(Qt::AlignCenter);
 
-        edatevert->addWidget(edateLabel, 0, Qt::AlignHCenter);
+        edatevert->addWidget(edateLabel);
 
-        edateLine = new QLineEdit(verticalLayoutWidget_17);
-        edateLine->setObjectName(QString::fromUtf8("edateLine"));
-        sizePolicy2.setHeightForWidth(edateLine->sizePolicy().hasHeightForWidth());
-        edateLine->setSizePolicy(sizePolicy2);
+        earningDateEdit = new QDateEdit(verticalLayoutWidget_17);
+        earningDateEdit->setObjectName(QString::fromUtf8("earningDateEdit"));
 
-        edatevert->addWidget(edateLine, 0, Qt::AlignHCenter);
+        edatevert->addWidget(earningDateEdit);
 
 
         earningvert->addLayout(edatevert);
@@ -651,14 +672,72 @@ public:
 
         currentPageLabel = new QLabel(centralwidget);
         currentPageLabel->setObjectName(QString::fromUtf8("currentPageLabel"));
-        currentPageLabel->setGeometry(QRect(10, 10, 91, 16));
+        currentPageLabel->setGeometry(QRect(10, 10, 101, 16));
         QFont font;
         font.setBold(true);
         font.setWeight(75);
         currentPageLabel->setFont(font);
         pageLabel = new QLabel(centralwidget);
         pageLabel->setObjectName(QString::fromUtf8("pageLabel"));
-        pageLabel->setGeometry(QRect(106, 8, 51, 20));
+        pageLabel->setGeometry(QRect(110, 8, 51, 20));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(1010, 180, 101, 31));
+        QFont font1;
+        font1.setPointSize(10);
+        label->setFont(font1);
+        verticalLayoutWidget_2 = new QWidget(centralwidget);
+        verticalLayoutWidget_2->setObjectName(QString::fromUtf8("verticalLayoutWidget_2"));
+        verticalLayoutWidget_2->setGeometry(QRect(960, 210, 211, 88));
+        verticalLayout_5 = new QVBoxLayout(verticalLayoutWidget_2);
+        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
+        verticalLayout_5->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalSpacer_4 = new QSpacerItem(25, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_4);
+
+        savingGoalLabel = new QLabel(verticalLayoutWidget_2);
+        savingGoalLabel->setObjectName(QString::fromUtf8("savingGoalLabel"));
+
+        horizontalLayout_2->addWidget(savingGoalLabel);
+
+        horizontalSpacer_2 = new QSpacerItem(10, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_2);
+
+        savingRemainLabel = new QLabel(verticalLayoutWidget_2);
+        savingRemainLabel->setObjectName(QString::fromUtf8("savingRemainLabel"));
+
+        horizontalLayout_2->addWidget(savingRemainLabel);
+
+
+        verticalLayout_5->addLayout(horizontalLayout_2);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        savingGoalLine = new QLineEdit(verticalLayoutWidget_2);
+        savingGoalLine->setObjectName(QString::fromUtf8("savingGoalLine"));
+        savingGoalLine->setEchoMode(QLineEdit::Normal);
+        savingGoalLine->setReadOnly(true);
+
+        horizontalLayout->addWidget(savingGoalLine);
+
+        savingRemainLine = new QLineEdit(verticalLayoutWidget_2);
+        savingRemainLine->setObjectName(QString::fromUtf8("savingRemainLine"));
+        savingRemainLine->setReadOnly(true);
+
+        horizontalLayout->addWidget(savingRemainLine);
+
+
+        verticalLayout_5->addLayout(horizontalLayout);
+
+        pushButton = new QPushButton(verticalLayoutWidget_2);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+
+        verticalLayout_5->addWidget(pushButton);
+
         finance_page->setCentralWidget(centralwidget);
         menubar = new QMenuBar(finance_page);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -698,6 +777,7 @@ public:
         QObject::connect(earningsTable, SIGNAL(clicked(QModelIndex)), finance_page, SLOT(earningsClicked(QModelIndex)));
         QObject::connect(esaveLine, SIGNAL(textChanged(QString)), finance_page, SLOT(savingAmount()));
         QObject::connect(espendLine, SIGNAL(textChanged(QString)), finance_page, SLOT(spendingAmount()));
+        QObject::connect(pushButton, SIGNAL(clicked()), finance_page, SLOT(openGoalWindow()));
 
         QMetaObject::connectSlotsByName(finance_page);
     } // setupUi
@@ -706,7 +786,6 @@ public:
     {
         finance_page->setWindowTitle(QCoreApplication::translate("finance_page", "Finances Page", nullptr));
         dateLabel->setText(QCoreApplication::translate("finance_page", "Date of Purchase", nullptr));
-        dateLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter a date...", nullptr));
         itemLabel->setText(QCoreApplication::translate("finance_page", "Item Name", nullptr));
         itemLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter an item...", nullptr));
         amountLabel->setText(QCoreApplication::translate("finance_page", "Amount Spent", nullptr));
@@ -720,7 +799,6 @@ public:
         searchLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter an item or date...", nullptr));
         financeSearchButton->setText(QCoreApplication::translate("finance_page", "Search", nullptr));
         pdateLabel->setText(QCoreApplication::translate("finance_page", "Date", nullptr));
-        pdateLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter a date...", nullptr));
         pamountLabel->setText(QCoreApplication::translate("finance_page", "Paycheck Amount", nullptr));
         pamountLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter paycheck...", nullptr));
         spendLabel->setText(QCoreApplication::translate("finance_page", "Spending %", nullptr));
@@ -734,7 +812,6 @@ public:
         paycheckSearchLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter a date...", nullptr));
         paycheckSearchButton->setText(QCoreApplication::translate("finance_page", "Search", nullptr));
         edateLabel->setText(QCoreApplication::translate("finance_page", "Date", nullptr));
-        edateLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter a date...", nullptr));
         espendLabel->setText(QCoreApplication::translate("finance_page", "Spending", nullptr));
         espendLine->setPlaceholderText(QCoreApplication::translate("finance_page", "Enter spending...", nullptr));
         esaveLabel->setText(QCoreApplication::translate("finance_page", "Saving", nullptr));
@@ -753,6 +830,10 @@ public:
         accountSettings->setText(QCoreApplication::translate("finance_page", "Account Settings", nullptr));
         currentPageLabel->setText(QCoreApplication::translate("finance_page", "CURRENT PAGE: ", nullptr));
         pageLabel->setText(QString());
+        label->setText(QCoreApplication::translate("finance_page", "Savings Goal", nullptr));
+        savingGoalLabel->setText(QCoreApplication::translate("finance_page", "Goal", nullptr));
+        savingRemainLabel->setText(QCoreApplication::translate("finance_page", "Remains", nullptr));
+        pushButton->setText(QCoreApplication::translate("finance_page", "Make a goal", nullptr));
     } // retranslateUi
 
 };

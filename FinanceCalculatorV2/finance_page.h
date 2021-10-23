@@ -1,6 +1,8 @@
 #ifndef FINANCE_PAGE_H
 #define FINANCE_PAGE_H
 #include <QMainWindow>
+#include <QDate>
+#include "savings_goal.h"
 
 namespace Ui {
 class finance_page;
@@ -14,6 +16,9 @@ public:
     explicit finance_page(QWidget *parent = nullptr);
     ~finance_page();
 private slots:
+    void openGoalWindow();
+    void setSavingsGoal(QString);
+
     void searchPurchases();
     void addToPurchases();
     void goToPurchases();
@@ -48,6 +53,7 @@ private slots:
 
 private:
     Ui::finance_page *ui;
+    savings_goal *save_dialog = new savings_goal;
 };
 
 #endif // FINANCE_PAGE_H

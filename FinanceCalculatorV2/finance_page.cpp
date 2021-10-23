@@ -2,6 +2,7 @@
 #include "ui_finance_page.h"
 #include "header.h"
 #include <QRegExp>
+#include <QObject>
 #include <QRegExpValidator>
 #include "login_screen.h"
 
@@ -14,7 +15,6 @@ finance_page::finance_page(QWidget *parent) :
     ui(new Ui::finance_page) {
     ui->setupUi(this);
 
-
     //Default page, so make sure label is set to this
     ui->pageLabel->setText("Purchases");
 
@@ -22,21 +22,43 @@ finance_page::finance_page(QWidget *parent) :
     refreshPurchases();
     refreshPaychecks();
     refreshEarningsPage();
+    QString dateFormat = "MM/dd/yyyy";
+    ui->purchaseDateEdit->setDisplayFormat(dateFormat);
+    ui->paycheckDateEdit->setDisplayFormat(dateFormat);
+    ui->earningDateEdit->setDisplayFormat(dateFormat);
 
+    ui->purchaseDateEdit->setDate(QDate::currentDate());
+    ui->paycheckDateEdit->setDate(QDate::currentDate());
+    ui->earningDateEdit->setDate(QDate::currentDate());
+
+    //qDebug() << ui->paycheckDateEdit->date().toString(ui->purchaseDateEdit->displayFormat());
     //Regex that needs to be fixed
-    ui->dateLine->setValidator(new QRegExpValidator(QRegExp("^([0]?[1-9]|[1][0-2])[./-]([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]([0-9]{4}|[0-9]{2})$")));
-    ui->pdateLine->setValidator(new QRegExpValidator(QRegExp("^([0]?[1-9]|[1][0-2])[./-]([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]([0-9]{4}|[0-9]{2})$")));
-    ui->edateLine->setValidator(new QRegExpValidator(QRegExp("^([0]?[1-9]|[1][0-2])[./-]([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]([0-9]{4}|[0-9]{2})$")));
+
+    // ui->dateLine->setValidator(new QRegExpValidator(QRegExp("^([0]?[1-9]|[1][0-2])[./-]([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]([0-9]{4}|[0-9]{2})$")));
+    // ui->pdateLine->setValidator(new QRegExpValidator(QRegExp("^([0]?[1-9]|[1][0-2])[./-]([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]([0-9]{4}|[0-9]{2})$")));
+    // ui->edateLine->setValidator(new QRegExpValidator(QRegExp("^([0]?[1-9]|[1][0-2])[./-]([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]([0-9]{4}|[0-9]{2})$")));
     ui->amountLine->setValidator(new QRegExpValidator(QRegExp("[1-9][0-9]{0,5}\\.[0-9]{1,2}")));
     ui->pamountLine->setValidator(new QRegExpValidator(QRegExp("[1-9][0-9]{0,5}\\.[0-9]{1,2}")));
     ui->espendLine->setValidator(new QRegExpValidator(QRegExp("[1-9][0-9]{0,5}\\.[0-9]{1,2}")));
     ui->esaveLine->setValidator(new QRegExpValidator(QRegExp("[1-9][0-9]{0,5}\\.[0-9]{1,2}")));
 }
 
-finance_page::~finance_page()
-{
+
+void finance_page::openGoalWindow() {
+    save_dialog->show();
+    QObject::connect(save_dialog, &savings_goal::setGoalLine, this, &finance_page::setSavingsGoal);
+    //save_dialog->hide();
+}
+
+void finance_page::setSavingsGoal(QString str) {
+    ui->savingGoalLine->setText(str);
+    qDebug() << "Confirm";
+}
+
+finance_page::~finance_page() {
     delete ui;
 }
+
 
 /*!
  * \brief Lets the user adjust their account settings
@@ -78,7 +100,7 @@ void finance_page::searchPurchases() {
 void finance_page::addToPurchases() {
     QSqlQuery query;
 
-    QString date = ui->dateLine->text();
+    QString date = ui->purchaseDateEdit->date().toString(ui->purchaseDateEdit->displayFormat());//ui->dateLine->text();
     QString item = ui->itemLine->text();
     QString spent = ui->amountLine->text();
     QString note = ui->noteLine->toPlainText();
@@ -103,7 +125,7 @@ void finance_page::addToPurchases() {
 
        // QMessageBox::information(this, "Success!", "Purchase added!");
 
-        ui->dateLine->setText("");
+        //ui->dateLine->setText("");
         ui->itemLine->setText("");
         ui->amountLine->setText("");
         ui->noteLine->setText("");
@@ -160,7 +182,8 @@ void finance_page::contentClicked(const QModelIndex &index) {
 
     else {
         while(query.next()) {
-            ui->dateLine->setText(query.value(0).toString());
+            ui->purchaseDateEdit->setDate(QDate::fromString(query.value(0).toString(), ui->purchaseDateEdit->displayFormat()));
+           // ui->dateLine->setText(query.value(0).toString());
             ui->itemLine->setText(query.value(1).toString());
             ui->amountLine->setText(query.value(2).toString());
             ui->noteLine->setText(query.value(3).toString());
@@ -174,7 +197,7 @@ void finance_page::contentClicked(const QModelIndex &index) {
 void finance_page::editPurchases() {
     QSqlQuery query;
 
-    QString date = ui->dateLine->text();
+    QString date = ui->purchaseDateEdit->date().toString(ui->purchaseDateEdit->displayFormat());//ui->dateLine->text();
     QString item = ui->itemLine->text();
     QString spent = ui->amountLine->text();
     QString note = ui->noteLine->toPlainText();
@@ -194,7 +217,7 @@ void finance_page::editPurchases() {
     if(!query.exec())
         qDebug() << query.lastError();
 
-    ui->dateLine->setText("");
+    //ui->dateLine->setText("");
     ui->itemLine->setText("");
     ui->amountLine->setText("");
     ui->noteLine->setText("");
@@ -206,14 +229,14 @@ void finance_page::editPurchases() {
  */
 void finance_page::deletePurchases() {
     QSqlQuery query;
-    QString date = ui->dateLine->text();
+    QString date = ui->purchaseDateEdit->date().toString(ui->purchaseDateEdit->displayFormat());//ui->dateLine->text();
     QString item = ui->itemLine->text();
     query.prepare("DELETE FROM Purchases WHERE Date = '" + date + "' AND Item = '" + item + "';");
 
     if(!query.exec())
         qDebug() << query.lastError();
 
-    ui->dateLine->setText("");
+    //ui->dateLine->setText("");
     ui->itemLine->setText("");
     ui->amountLine->setText("");
     ui->noteLine->setText("");
@@ -300,7 +323,7 @@ void finance_page::savePercent() {
 void finance_page::submitPaycheck() {
     QSqlQuery query, earnings;
 
-    QString date = ui->pdateLine->text();
+    QString date = ui->paycheckDateEdit->date().toString(ui->purchaseDateEdit->displayFormat());//ui->pdateLine->text();
     QString note = ui->noteEdit->toPlainText();
     double amount = ui->pamountLine->text().toDouble();
 
@@ -335,7 +358,7 @@ void finance_page::submitPaycheck() {
         if(!earnings.exec())
             qDebug() << earnings.lastError();
 
-        ui->pdateLine->setText("");
+        //ui->pdateLine->setText("");
         ui->pamountLine->setText("");
         ui->noteEdit->setText("");
         refreshPaychecks();
@@ -350,7 +373,7 @@ void finance_page::submitPaycheck() {
 void finance_page::editPaycheck() {
     QSqlQuery query, earningQuery;
 
-    QString date = ui->pdateLine->text();
+    QString date = ui->paycheckDateEdit->date().toString(ui->purchaseDateEdit->displayFormat());//ui->pdateLine->text();
     QString spent = ui->pamountLine->text();
     QString note = ui->noteEdit->toPlainText();
 
@@ -377,7 +400,7 @@ void finance_page::editPaycheck() {
 
 
 
-    ui->pdateLine->setText("");
+   // ui->pdateLine->setText("");
     ui->pamountLine->setText("");
     ui->noteEdit->setText("");
 
@@ -403,7 +426,7 @@ void finance_page::editPaycheck() {
  */
 void finance_page::deletePaycheck() {
     QSqlQuery query, earnings;
-    QString date = ui->pdateLine->text();
+    QString date = ui->paycheckDateEdit->date().toString(ui->purchaseDateEdit->displayFormat());//ui->pdateLine->text();
     QString spent = ui->pamountLine->text();
     query.prepare("DELETE FROM Paychecks WHERE Date = '" + date + "' AND Amount = '" + spent + "';");
 
@@ -415,7 +438,7 @@ void finance_page::deletePaycheck() {
     if(!earnings.exec())
         qDebug() << earnings.lastError();
 
-    ui->pdateLine->setText("");
+    //ui->pdateLine->setText("");
     ui->pamountLine->setText("");
     ui->noteEdit->setText("");
     ui->spendingPercent->setValue(0.00);
@@ -490,7 +513,8 @@ void finance_page::paychecksClicked(const QModelIndex &index) {
 
     else {
         while(query.next()) {
-            ui->pdateLine->setText(query.value(0).toString());
+            //ui->pdateLine->setText(query.value(0).toString());
+            ui->paycheckDateEdit->setDate(QDate::fromString(query.value(0).toString(), ui->paycheckDateEdit->displayFormat()));
             ui->pamountLine->setText(query.value(1).toString());
             ui->noteEdit->setText(query.value(2).toString());
             ui->spendingPercent->setValue(query.value(3).toDouble());
@@ -505,7 +529,7 @@ void finance_page::paychecksClicked(const QModelIndex &index) {
 void finance_page::editEarning() {
     QSqlQuery query;
 
-    QString date = ui->edateLine->text();
+    QString date = ui->earningDateEdit->date().toString(ui->earningDateEdit->displayFormat());//ui->edateLine->text();
     QString spent = ui->espendLine->text();
     QString saved = ui->esaveLine->text();
 
@@ -513,7 +537,7 @@ void finance_page::editEarning() {
     if(!query.exec())
         qDebug() << query.lastError();
 
-    ui->edateLine->setText("");
+    // ui->edateLine->setText("");
     ui->espendLine->setText("");
     ui->esaveLine->setText("");
 
@@ -524,7 +548,7 @@ void finance_page::editEarning() {
 void finance_page::spendingAmount() {
     QSqlQuery query;
     double total;
-    QString date = ui->edateLine->text();
+    QString date = ui->earningDateEdit->date().toString(ui->earningDateEdit->displayFormat());//ui->edateLine->text();
     query.prepare("SELECT Amount FROM Paychecks WHERE Date = '" + date + "';");
     if(!query.exec())
         qDebug() << query.lastError();
@@ -545,7 +569,7 @@ void finance_page::spendingAmount() {
 void finance_page::savingAmount() {
     QSqlQuery query;
     double total;
-    QString date = ui->edateLine->text();
+    QString date = ui->earningDateEdit->date().toString(ui->earningDateEdit->displayFormat());//ui->edateLine->text();
     query.prepare("SELECT Amount FROM Paychecks WHERE Date = '" + date + "'");
     if(!query.exec())
         qDebug() << query.lastError();
@@ -561,7 +585,7 @@ void finance_page::savingAmount() {
 void finance_page::submitEarning() {
     QSqlQuery query;
 
-    QString date = ui->edateLine->text();
+    QString date = ui->earningDateEdit->date().toString(ui->earningDateEdit->displayFormat());//ui->edateLine->text();
 
     QString spending = ui->espendLine->text();
     QString saving = ui->esaveLine->text();
@@ -582,7 +606,7 @@ void finance_page::submitEarning() {
 
         //QMessageBox::information(this, "Success!", "Purchase added!"); definitely not needed
 
-        ui->edateLine->setText("");
+        //ui->edateLine->setText("");
         ui->espendLine->setText("");
         ui->esaveLine->setText("");
         refreshEarnings();
@@ -595,7 +619,7 @@ void finance_page::submitEarning() {
  */
 void finance_page::deleteEarning() {
     QSqlQuery query, actuallydelete;
-    QString date = ui->edateLine->text();
+    QString date = ui->earningDateEdit->date().toString(ui->earningDateEdit->displayFormat());//ui->edateLine->text();
     QString spent = ui->espendLine->text();
     QString saved = ui->esaveLine->text();
 
@@ -611,7 +635,7 @@ void finance_page::deleteEarning() {
     if(!actuallydelete.exec())
         qDebug() << actuallydelete.lastError();
 
-    ui->edateLine->setText("");
+    //ui->edateLine->setText("");
     ui->espendLine->setText("");
     ui->esaveLine->setText("");
     refreshEarningsPage();
@@ -635,11 +659,13 @@ void finance_page::earningsClicked(const QModelIndex &index) {
     else {
         while(query.next()) {
             if(!checkForZero(index)) {
-                ui->edateLine->setText(query.value(0).toString());
+                ui->earningDateEdit->setDate(QDate::fromString(query.value(0).toString(), ui->earningDateEdit->displayFormat()));
+                //ui->edateLine->setText(query.value(0).toString());
                 ui->espendLine->setText(QString::number(query.value(1).toDouble(), 'f', 1));
                 ui->esaveLine->setText(QString::number(query.value(2).toDouble(), 'f', 1));
             } else if (checkForZero(index)){
-                ui->edateLine->setText(query.value(0).toString());
+                ui->earningDateEdit->setDate(QDate::fromString(query.value(0).toString(), ui->earningDateEdit->displayFormat()));
+                //ui->edateLine->setText(query.value(0).toString());
                 ui->espendLine->setText(QString::number(query.value(1).toDouble(), 'f', 0));
                 ui->esaveLine->setText(QString::number(query.value(2).toDouble(), 'f', 0));
             }

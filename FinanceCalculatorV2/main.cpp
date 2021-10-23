@@ -1,6 +1,7 @@
 #include "login_screen.h"
 #include "finance_page.h"
 #include "database.h"
+#include "savings_goal.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -31,10 +32,10 @@ int main(int argc, char *argv[])
         qDebug() << query.lastError();
     login_screen screen;
     finance_page page;
+    savings_goal saving;
     if(activated == 0)
         page.show();
     else if(activated == 1)
         screen.show();
-
     return a.exec();
 }

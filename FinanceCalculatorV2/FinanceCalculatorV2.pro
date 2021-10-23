@@ -19,17 +19,20 @@ SOURCES += \
     database.cpp \
     finance_page.cpp \
     main.cpp \
-    login_screen.cpp
+    login_screen.cpp \
+    savings_goal.cpp
 
 HEADERS += \
     database.h \
     finance_page.h \
     header.h \
-    login_screen.h
+    login_screen.h \
+    savings_goal.h
 
 FORMS += \
     finance_page.ui \
-    login_screen.ui
+    login_screen.ui \
+    savings_goal.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
